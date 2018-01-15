@@ -1,0 +1,110 @@
+{% extends "onitools_layout.html" %}
+
+{% from "onitools_layout.html" import mobile_warning %}
+
+{% block title %}{{ canvas_name }}{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/canvas.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='font-awesome/css/font-awesome.min.css') }}">
+{% endblock %}
+
+{% block precontent %} {{ mobile_warning('Sozo') }}{% endblock %}
+
+{% block body %}
+<div class="inner-frame">
+	
+	<h2 class="canvas-title">{{ canvas_name }}</h2>
+
+	<div class="row">
+		<div class="drawsidebar col text-center">
+
+			<div class="row">
+				<canvas id="minimap" class="minimap"></canvas>
+			</div> <!-- /row -->
+
+			<div class="row">
+				<div class="btn-group" data-toggle="buttons" style="width: 100%;">
+					<label class="btn btn-secondary active" style="width: 50%;">
+						<input type="radio" name="tool" autocomplete="off" value="pencil" checked> Pencil
+					</label>
+					<label class="btn btn-secondary" style="width: 50%;">
+						<input type="radio" name="tool" autocomplete="off" value="eraser"> Eraser
+					</label>
+				</div> <!-- /btn-group -->
+			</div> <!-- /row -->
+
+			<div class="row">
+				<label for="pencilwidth">Pencil weight:</label>
+				<div class="input-group">
+					<input id="pencilwidth" type="number" min="1" max="20" step="1" value="3" class="form-control">
+					<span class="input-group-addon">px</span>
+				</div> <!-- /input-group -->
+			</div> <!-- /row -->
+
+			<div class="row">
+				<label for="drawcolor">Color:</label>
+				<input id="drawcolor" type="color" class="form-control" value="#000000">
+			</div> <!-- /row -->
+
+			<div class="row">
+				<label for="textsize">Text size:</label>
+				<div class="input-group">
+					<input id="textsize" type="number" min="10" max="50" step="1" value="20" class="form-control">
+					<span class="input-group-addon">px</span>
+				</div> <!-- /input-group -->
+			</div> <!-- /row -->
+
+			<div class="row">
+				<label for="textfont">Font:</label>
+				<select id="textfont" class="form-control">
+				</select>
+			</div> <!-- /row -->
+
+			<div class="row">
+				<p>
+				  <a class="btn btn-link" data-toggle="collapse" href="#drawHelp" role="button" aria-expanded="false" aria-controls="drawHelp"><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;Help</a>
+				</p>
+				<div class="collapse" id="drawHelp">
+				  <div class="card card-body">
+				    Click and drag while holding shift to pan. Left-click to draw with the pencil or eraser. Right-click to select the color under the cursor. Double-click to place text, and enter to commit.
+				  </div>
+				</div>
+			</div> <!-- /row -->
+
+		</div>
+
+		<div id="drawmain" class="drawmain col">
+			<canvas id="draw" width="800" height="600" class="drawcanvas" data-meta-opts="{{ metaopts | tojson | safe | forceescape }}"></canvas>
+
+			<div class="drawbottombar col text-center">
+				<div class="btn-group">
+					<button id="undobtn" type="button" class="btn btn-light" title="Undo" disabled>
+						<i class="fa fa-rotate-left" aria-hidden="true"></i>
+					</button>
+					<button id="redobtn" type="button" class="btn btn-light" title="Redo" disabled>
+						<i class="fa fa-rotate-right" aria-hidden="true"></i>
+					</button>
+					<a href="#" id="downloadbtn" class="btn btn-light" title="Save" download="drawing.png">
+						<i class="fa fa-download" aria-hidden="true"></i>
+					</a>
+					<button id="sharebtn" type="button" class="btn btn-light" data-toggle="popover" data-trigger="focus" data-html="true" title="Share">
+						<i class="fa fa-share" aria-hidden="true"></i>
+					</button>
+				</div> <!-- /btn-group -->
+			</div> <!-- /drawbottombar -->
+		</div> <!-- /drawmain -->
+	</div> <!-- /row -->
+</div> <!-- /row inner-frame -->
+{% endblock %}
+
+{% block footer %}
+<span id="activeText" class="activeText" contenteditable="true" style="display: none;">&zwnj;</span>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.5/socket.io.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='tinycolor.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='sozo_canvas.js') }}"></script>
+{% endblock %}

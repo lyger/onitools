@@ -1,0 +1,59 @@
+{% extends "onitools_layout.html" %}
+
+{% from "onitools_layout.html" import flashed, mobile_warning %}
+
+{% block title %}Sozo shared canvas{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ url_for('static', filename='font-awesome/css/font-awesome.min.css') }}">
+{% endblock %}
+
+{% block precontent %} {{ mobile_warning('Sozo') }}{% endblock %}
+
+{% block body %}
+<div class="inner-frame thin">
+	{{ flashed() }}
+	<h2>Create new Sozo shared canvas</h2>
+	<form action="{{ url_for('.main') }}" method="post">
+		<div class="form-group">
+			<label class="form-label" for="sozoname">Canvas name</label>
+			<input name="name" id="sozoname" type="text" class="form-control" placeholder="My canvas">
+		</div>
+		<div class="form-group row">
+			<div class="col">
+				<label class="form-label" for="sozowidth">Width</label>
+				<div class="input-group">
+					<input name="width" id="sozowidth" type="number" class="form-control" min="800" max="3000" value="800">
+					<span class="input-group-addon">px</span>
+				</div>
+			</div>
+			<div class="col">
+				<label class="form-label" for="sozowidth">Height</label>
+				<div class="input-group">
+					<input name="height" id="sozoheight" type="number" class="form-control" min="600" max="2000" value="600">
+					<span class="input-group-addon">px</span>
+				</div>
+			</div>
+			<div class="col">
+				<label class="form-label" for="sozoback">Background color</label>
+				<input name="background" id="sozoback" type="color" class="form-control" value="#FFFFFF">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="form-label" for="pass">Passphrase (optional)</label>
+			<input name="pass" id="sozopass" type="password" class="form-control">
+		</div>
+		<div class="text-center">
+			<input type="submit" class="btn btn-secondary" value="Create">
+		</div>
+	</form>
+	<p>
+		<a class="btn btn-link" data-toggle="collapse" href="#sozoInfo" role="button" aria-expanded="false" aria-controls="sozoInfo"><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;Sozo?</a>
+	</p>
+	<div class="collapse" id="sozoInfo">
+	  <div class="card card-body">
+	    "Sozo" comes from the Japanese word for "create" or "imagination", and is a tool for sharing drawings and text in real time. When you create a canvas, simply send the link to your friends, and you can begin drawing together.
+	  </div>
+	</div>
+</div> <!-- /inner-frame -->
+{% endblock %}

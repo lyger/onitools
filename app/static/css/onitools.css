@@ -1,0 +1,106 @@
+/**
+ * Breakpoints to allow javascript querying.
+ */
+body:before {
+  content: "smartphone-only";
+  display: none; /* Prevent from displaying. */
+}
+@media (min-width: 600px) {
+  body:before {
+    content: "tablet-portrait-up";
+  }
+}
+@media (min-width: 900px) {
+  body:before {
+    content: "tablet-landscape-up";
+  }
+}
+@media (min-width: 1200px) {
+  body:before {
+    content: "desktop-up";
+  }
+}
+@media (min-width: 1800px) {
+  body:before {
+    content: "big-desktop-up";
+  }
+}
+@media (min-width: 2500px) {
+  body:before {
+    content: "hdpi-desktop-up";
+  }
+}
+
+body,html{min-height: 100%;}
+
+.content {
+	margin: 30px auto;
+}
+
+.form-control {
+	height: 2.375rem;
+}
+
+.logo-bar {
+	position: relative;
+	background-image: url(/static/img/onitools_mascot_lf_100.png);
+	background-repeat: no-repeat;
+	background-position: 5px 0px;
+	padding: 0px;
+	padding-left: 100px;
+	height: 134px;
+}
+
+.navbar-light {
+	position: absolute;
+	bottom: 0px;
+	padding: 0px;
+	line-height: 41px;
+}
+
+.logo-home {
+	padding-right: 15px;
+}
+.logo-home > a:link,
+.logo-home > a:visited,
+.logo-home > a:hover,
+.logo-home > a:active {
+	text-decoration: none;
+	color: #212529;
+}
+
+.nav-link {
+	color: #212529 !important;
+}
+.nav-link:hover,
+.nav-link:active {
+	text-decoration: underline;
+}
+
+/* lg breakpoint */
+@media (min-width: 992px) {
+	.nav-link.current {
+		padding-right: 1rem !important;
+		padding-left: 1rem !important;
+		border: 1px solid #ced4da;
+		background-color: #F3F5F7;
+		margin-bottom: -1px;
+		border-bottom: none;
+		border-top-right-radius: 10px;
+		border-top-left-radius: 10px;
+	}
+}
+
+.inner-frame {
+	border: 1px solid #ced4da;
+	background-color: #F3F5F7;
+	border-radius: 10px;
+	padding: 15px;
+	min-width: 480px;
+}
+
+.thin {
+	max-width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+}
