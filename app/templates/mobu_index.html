@@ -1,0 +1,81 @@
+{% extends "onitools_layout.html" %}
+
+{% from "onitools_layout.html" import flashed %}
+
+{% block title %}Mobu encounter manager{% endblock %}
+
+{% block body %}
+<div class="inner-frame">
+	{{ flashed() }}
+	<h2>Mobu encounter manager</h2>
+
+	<p>"Mobu" comes from the Japanese word for "nameless, faceless NPC", and is a tool for tracking HP and rolling actions for groups of creatures in tabletop RPG encounters.</p>
+
+	<p>The interface will load with an example encounter that you can play around with. HP, damage, and healing values can be whole numbers or dice expressions, and dice expressions can be included in action descriptions between <code>[</code>square brackets<code>]</code>.</p>
+
+	<p>Basic arithmetic, parentheses, and keep/drop are allowed in dice expressions. Keep/drop uses <a href="https://wiki.roll20.net/Dice_Reference#Keep_.2F_Drop_Dice_.28B.2CF.29_khN.2FklN.2FdhN.2FdlN">Roll20</a> syntax (other Roll20 features are not (yet) supported).</p>
+
+	<p>The encounter is saved locally to your browser and will reappear as you left it when you open the page, unless you delete your cache. At the moment, there is no way to share encounters across devices or edit more than one encounter at a time.</p>
+
+	<p class="text-center">
+		<a class="btn btn-secondary" href="{{ url_for('.run_app') }}">Start</a>
+	</p>
+
+	<h3>Instructions</h3>
+	<hr/>
+	<a data-toggle="collapse" href="#mobuInstructions" role="button" aria-expanded="false" aria-controls="mobuInstructions">
+		[Show]
+	</a>
+	<div class="collapse" id="mobuInstructions">
+		<p>The encounter editor should be self-explanatory. Running the encounter can be done entirely with the keyboard or entirely with a mouse or touchscreen. The keyboard controls require some explanation.</p>
+
+		<p>Below I have an example encounter with five goblins, a bugbear, and three ghasts.</p>
+
+		<img src="{{ url_for('static', filename='img/mobu_tut_01.png') }}" width="600"/>
+
+		<p>If I want to select the bugbear, all I have to do is type "b" (upper or lower case). Since there's only one monster that begins with "b", the bugbear will immediately be selected, and the action options will be displayed.</p>
+
+		<img src="{{ url_for('static', filename='img/mobu_tut_02.png') }}" width="600"/>
+
+		<p>Once again, all I have to do is start typing the option I want, or press space to cancel and return to the creature selection menu. I want the bugbear to take some damage, so I'll type "d". Since no other action starts with "d", the damage option will be selected without my having to do anything else. So far, I've only typed two keys.</p>
+
+		<img src="{{ url_for('static', filename='img/mobu_tut_03.png') }}" width="600"/>
+
+		<p>You can use the provided keypad to input the damage, but if you're on keyboard, you probably just want to type normally. As mentioned, you can input a dice expression here, or just type a number. Note that, when applying damage or healing to multiple creatures, the dice expression will be <em>re-rolled for each creature</em>.</p>
+
+		<img src="{{ url_for('static', filename='img/mobu_tut_04.png') }}" width="600"/>
+
+		<p>We see the result of the action displayed here. For keyboard users, type any key to return to the creature select. For mouse and touch, you can click or tap anywhere in the lower panel.</p>
+
+		<p>Now let's say I want the goblins to do something. There are two monsters that begin with "g", so typing "g" will narrow the options down to two, but it won't select anything yet.</p>
+
+		<img src="{{ url_for('static', filename='img/mobu_tut_05.png') }}" width="600"/>
+
+		<p>The answer is, of course, to type "o", the next letter in "goblin", which will cause "goblin" to automatically become selected.</p>
+
+		<p>I now see a list of all seven goblins, complete with randomly-generated distinguishing features. I don't want to have to type out the full name of the creature to select it, so instead, each creature has been prefixed with a letter. You can type the letter (lower case) to select one creature, or hold down shift and type the letters of multiple creatures you want to select.</p>
+
+		<img src="{{ url_for('static', filename='img/mobu_tut_06.png') }}" width="600"/>
+
+		<p>To finalize the selection, I just let go of shift, and goblins B, D, and E are selected. I see the action menu much like before. This time, the options "scimitar" and "shortbow" both start with "s". I want the goblins to attack with their scimitars, so I simply type "sc" and the result immediately shows up.</p>
+
+		<img src="{{ url_for('static', filename='img/mobu_tut_07.png') }}" width="600"/>
+
+		<p>And that's all there is to it! Happy rolling.</p>
+	</div>
+
+	<h3>Upcoming</h3>
+	<hr/>
+	<a data-toggle="collapse" href="#mobuFuture" role="button" aria-expanded="false" aria-controls="mobuFuture">
+		[Show]
+	</a>
+	<div class="collapse" id="mobuFuture">
+		<p>In case you couldn't tell, I ran out of steam partway through coming up with random descriptors; the items lower on the list tend to produce pretty lame results. <a href="https://gist.github.com/anonymous/cf533a08902236f35bd89d333a057eea">Here</a> are all the templates used to generate monster descriptions. Text between <code>[</code>square brackets<code>]</code> in the "templates" are substituted with random selections from the "words" lists below. If you want to contribute ideas, let me know (/u/lygerzero0zero on Reddit).</p>
+
+		<p>I'm also considering adding support for status conditions. A simple editor would allow you to create and manage a list of conditions, and you could add or remove conditions to monsters when running the encounter.</p>
+
+		<p>As mentioned above, encounters are only saved locally at the moment. In the future, I may allow encounters to be permanently saved on the server, or to be downloaded to your computer and imported when you need them.</p>
+	</div>
+
+</div> <!-- /inner-frame -->
+{% endblock %}
