@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
-from flask import abort, Blueprint, current_app, flash, redirect, \
-    render_template, request, session, url_for
+from flask import flash, redirect, render_template, request, session, url_for
 from werkzeug.security import generate_password_hash, \
     check_password_hash
 

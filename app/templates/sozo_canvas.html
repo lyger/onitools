@@ -63,13 +63,8 @@
 
 			<div class="row">
 				<p>
-				  <a class="btn btn-link" data-toggle="collapse" href="#drawHelp" role="button" aria-expanded="false" aria-controls="drawHelp"><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;Help</a>
+				  <button type="button" class="btn btn-link" data-toggle="modal" data-target="#drawHelp" role="button"><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;Help</button>
 				</p>
-				<div class="collapse" id="drawHelp">
-				  <div class="card card-body">
-				    Click and drag while holding shift to pan. Left-click to draw with the pencil or eraser. Right-click to select the color under the cursor. Double-click to place text, and enter to commit.
-				  </div>
-				</div>
 			</div> <!-- /row -->
 
 		</div>
@@ -100,6 +95,22 @@
 
 {% block footer %}
 <span id="activeText" class="activeText" contenteditable="true" style="display: none;">&zwnj;</span>
+
+<div class="modal fade" id="drawHelp" tabindex="-1" role="dialog" aria-labelledby="drawHelpLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="drawHelpLabel">Instructions</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Click and drag while holding shift to pan. Left-click to draw with the pencil or eraser. Right-click to select the color under the cursor. Double-click to place text, and enter to commit.
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
 
 {% block scripts %}
