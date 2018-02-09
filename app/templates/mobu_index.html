@@ -18,6 +18,7 @@
 	<p>Encounters are saved locally to your browser based on the name you give them. Unless you delete your cache, your encounter will always reappear as you left it at <code>/mobu/run/[your encounter name]</code>. At the moment, there is no way to share encounters across devices.</p>
 
 	<form class="text-center" action="{{ url_for('.main') }}" method="POST">
+		<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 		<div class="form-group col-6 offset-3 text-left">
 			<label for="mobuName">Encounter name:</label>
 			<input id="mobuName" name="mobuName" class="form-control" type="text" value="My_Encounter1"/>

@@ -10,25 +10,34 @@ import pathlib
 from ...decorators import async
 
 generators = OrderedDict([
-    ('Town names',
+    ('Towns',
         [
             'English',
-            'German',
             'French',
-            'Norse'
-        ]),
-    ('Character names',
-        [
-            'Anglo-Saxon',
-            'Dutch',
             'German',
-            'Misc'
+            'Greek',
+            'Latin',
+            'Norse',
+            'Slavic',
+            'Spanish',
         ]),
-    ('Monster names',
+    ('Characters',
         [
+            'Generic',
+            'Brazilian',
+            'Egyptian',
+            'English first names',
+            'English last names',
+            'Elf first names',
+            'Elf last names',
+            'Dwarf first names',
+            'Dwarf last names',
+        ]),
+    ('Other',
+        [
+            'Monsters',
             'Angels',
             'Demons',
-            'Misc'
         ])
 ])
 
@@ -147,7 +156,8 @@ class __ModelWrapper:
                 for n in self.generator.generate(GEN_PER,
                                                  limit=self.length_limit,
                                                  beam=2):
-                    if n not in skip:
+                    n = n.strip()
+                    if n not in skip and len(n) > 1:
                         genned.append(n)
                         skip.add(n)
                 if len(genned) >= num:
@@ -159,18 +169,6 @@ class __ModelWrapper:
         with self.lock:
             self.data.extend(new_data)
             self.has_new_data = True
-
-
-# def __load_models():
-#     models = {}
-#     for category, genlist in generators.items():
-#         models[category] = {}
-#         for gen in genlist:
-#             model_path = __P('model', category, gen)
-#             data_path = __P('data', category, gen) + '.txt'
-
-#             models[category][gen] = __ModelWrapper(data_path, model_path)
-#     return models
 
 
 @async
@@ -192,7 +190,6 @@ def start(num, callback):
 
     __create_file_structure()
 
-    # __models.update(__load_models())
     for category, genlist in generators.items():
         __models[category] = {}
         for genname in genlist:
@@ -201,10 +198,6 @@ def start(num, callback):
 
             __models[category][genname] = __ModelWrapper(data_path, model_path)
             request_more_data(category, genname, num, callback)
-
-    # for category, gendict in __models.items():
-    #     for genname in gendict:
-    #         request_more_data(category, genname, num, callback)
 
     while True:
         sleep(SLEEP_TIME)

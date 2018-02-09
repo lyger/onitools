@@ -16,18 +16,20 @@
 
 {% block precontent %}{% endblock %}
 
-		<div class="logo-bar">
+		<div class="logo-bar clearfix">
 			<nav class="navbar navbar-expand-lg navbar-light">
 				<h1 class="logo-home"><a href="{{ url_for('Home.main') }}">Onitools.moe</a></h1>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarLinks" aria-controls="navbarLinks" aria-expanded="false" aria-label="Toggle navigation">
 				    <span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarLinks">
-					<div class="navbar-nav">
+					<ul class="navbar-nav">
 {% for page in pages %}
-						<a class="nav-item nav-link{% if page == active_page %} current{% endif %}" href="{{ url_for(page + '.main') }}">{{ page }}</a>
+						<li class="nav-item{% if page == active_page %} current{% endif %}">
+							<a class="nav-link" href="{{ url_for(page + '.main') }}">{{ page }}</a>
+						</li>
 {% endfor %}
-					</div>
+					</ul>
 				</div>
 			</nav>
 		</div>

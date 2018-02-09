@@ -11,6 +11,7 @@
 	{{ flashed() }}
 	<h2>Enter passphrase for canvas "{{ canvas_name }}"</h2>
 	<form action="{{ url_for('.show_canvas', stringid=stringid) }}" method="post">
+		<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 		<div class="form-group">
 			<label class="form-label" for="pass">Passphrase</label>
 			<input name="pass" id="sozopass" type="password" class="form-control">

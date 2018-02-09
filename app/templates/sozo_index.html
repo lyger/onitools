@@ -15,6 +15,7 @@
 	{{ flashed() }}
 	<h2>Create new Sozo shared canvas</h2>
 	<form action="{{ url_for('.main') }}" method="post">
+		<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 		<div class="form-group">
 			<label class="form-label" for="sozoname">Canvas name</label>
 			<input name="name" id="sozoname" type="text" class="form-control" placeholder="My canvas">
