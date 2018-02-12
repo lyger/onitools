@@ -69,20 +69,27 @@ def create_app():
         }
 
     # Handle errors.
-    def handle_error(e):
-        message = 'Something went wrong.'
-        if e.code == 401 or e.code == 403:
-            message = 'You don\'t have permission to view this page.'
-        elif e.code == 404 or e.code == 410:
-            message = 'Sorry, we couldn\'t find what you were looking for.'
-        elif e.code == 405 or e.code == 408:
-            message = 'The server couldn\'t process your request.'
+    def handle_http_error(e):
+        try:
+            message = 'Something went wrong.'
+            if e.code == 401 or e.code == 403:
+                message = 'You don\'t have permission to view this page.'
+            elif e.code == 404 or e.code == 410:
+                message = 'Sorry, we couldn\'t find what you were looking for.'
+            elif e.code == 405 or e.code == 408:
+                message = 'The server couldn\'t process your request.'
 
-        return render_template('error.html',
-                               error_code=e.code,
-                               message=message), e.code
+            return render_template('error.html',
+                                   error_code=e.code,
+                                   message=message), e.code
+        except:
+            message = 'Something went wrong. ' + \
+                'Please contact the server administrator.'
+            return render_template('error.html',
+                                   error_code=500,
+                                   message=message), 500
 
     for code in default_exceptions:
-        app.errorhandler(code)(handle_error)
+        app.errorhandler(code)(handle_http_error)
 
     return app
