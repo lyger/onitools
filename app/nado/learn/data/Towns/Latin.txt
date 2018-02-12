@@ -1,0 +1,610 @@
+Brigantium
+Brigantia
+Carnuntum
+Chremisa
+Idunum
+Iuenna
+Iuvavum
+Iuvavia
+Salisburgum
+Lentia
+Noreia
+Oenipons
+Ovilava
+Veldidena
+Vindobona
+Vienna
+Virunum
+Maria Solio
+Aldenarda
+Alostum
+Anderlacum
+Antverpia
+Atuatuca Tungrorum
+Brugae
+Bruxella
+Bruxellae
+Cortoriacum
+Cortracum
+Damma
+Dammum
+Furna
+Gandavum
+Leodium
+Lovanium
+Orolaunum
+Rothnacum
+Tamasiacum
+Tamisiacum
+Temsica
+Teneramonda
+Tornacum
+Viroviacum
+Virovino
+Alta Muta
+Beneschovium
+Broda Bohemica
+Brunna
+Budovisium
+Carnovia
+Colonia
+Eburum
+Olomutium
+Olomucium
+Luna
+Nova domus
+Oppavia
+Ostravia
+Pilsenum
+Pilsna
+Praga
+Racona
+Vallis Gaudiorum
+Verona
+Znoimium
+Arus
+Arhus
+Fredericia
+Hafnia
+Othonia
+Sora
+Wibergis
+Pernavia
+Revalia
+Tharbata
+Aboa
+Arctopolis
+Arx Savonum
+Arx Tavastiae
+Tavasteburgum
+Borgoa
+Brahestadium
+Cajaneburgum
+Carolina Vetus
+Christinea
+Espo
+Fredericia
+Granivicus
+Helsinkium
+Helsingia
+Michaelia
+Neo-Carolina
+Neostadium
+Ostia Carelorum
+Portus Mariae
+Raumoa
+Sala
+Tammerforsia
+Tornea
+Uloa
+Vallis Gratiae
+Vantania
+Vasa
+Adiacium
+Alberti campus
+Andematunnum
+Lugdunum
+Lingones
+Aquae Sextiae
+Antissiodorum
+Autesiodorum
+Arelate
+Colonia Iulia Paterna Arelatensium Sextanorum
+Argentoratum
+Arpajonum
+Arpajoni castrum
+Arpacona
+Atrebatum
+Augusta Argentorate
+Augustobona Tricassium
+Tricassae
+Augustodurum
+Bajocae
+Bajocassium civitas
+Augustodunum
+Aurelianum
+Autricum
+civitas Carnutum
+Carnutes
+Avenio
+Belna
+Brestum
+Brestia
+Brivates Portis
+Briva Isara
+Burdigala
+Catalaunum
+Catelaunorum
+Catculliacum
+Condate Riedonum
+Crisenaria
+Cularo
+Damovilla
+Darioritum
+Dinia
+Diniensium civitas
+Divio
+Divodurum
+Durocortorum
+Flavia
+Flaviniacum
+Gesoriacum
+Bononia
+Glanum
+Lemonum
+civitas Pictonum
+Pictones
+Lugdunum
+Colonia Copia Claudia Augusta Lugdunum
+Lugdunum Clavatum
+Lugdunum Convenarum
+Lutetia
+Massilia
+Medicinum
+Mediolanum Aulercorum
+Mediolanum Santonum
+Narbo Martius
+Nemausus
+Nicaea
+Nicia
+Noviodunum
+Noviomagus Lexoviorum
+Noviomagus Veromanduorum
+Novio Rito
+Portus Namnetum
+Ramboletium
+Rotomagus
+Samarobriva
+Sancti Audoeni fanum
+villa aut domus
+Spinetum
+Spinogelum
+Spinoilum
+Espinolum
+Tolosa
+Tullum Leucorum
+Caesarodunum
+Augusta Turonum
+Metropolis civitas Turonum
+Turonica civitas
+Turones
+Toronus
+Tutelae
+Verodunum
+Vesontio
+Vienna Allobrogium
+Viennavicus
+Vierium
+Ara Agrippinensium
+Aqua Villae
+Aquisgrana
+Aquis Granum
+Aquae Grani
+Aquensis urbs
+Granis aquae
+Antunnacum
+Arae Flaviae
+Asopus
+Assindia
+Augusta Vindelicorum
+Augusta Treverorum
+Aurelia Aquensi
+Badena civitas
+Batavis
+Castra Batavorum
+Castra Batava
+Berolinum
+Bonna
+Borbetomagus
+Wormatia
+Brema
+Brunsvicum
+Cambodunum
+Castra Regina
+Ratisbona
+Castrum Novaesium
+Chemnitium
+Chemnicium
+Cignavia
+Cignea
+Cygnea
+Cynavia
+Clivia
+Colonia Agrippina
+Colonia Agrippinensis
+Colonia Ulpia Traiana
+Vetera
+Confluentes
+Constantia
+Cruciniacum
+Dispargum
+Dresda
+Emetha
+Amuthon
+Embda
+Emda
+Embden
+Erfordia
+Erphesfurt
+Esilinga
+Ezelinga
+Ezzilinga
+Francofortum ad Moenum
+Friburgum Brisgoviae
+Goettinga
+Gorlicium
+Goslaria
+Hale Suevice
+Hamburgum
+Hammonia
+Hannovera
+Herbipolis
+Hildanus
+Iuliacum
+Lauriacum
+Lindaugia
+Lindavia
+Lipsia
+Locoritum
+Lubica
+Magdeburgum
+Misnia
+Moguncia
+Moguntia
+Moguntiacum
+Mogontiacum
+Monachium
+Monacum
+Monasterium
+Monasterium Westphaliae
+Norimberga
+Northusia
+Novaesium
+Novensium
+Noviomagus Nemetum
+Noviomagus Trevirorum
+Patavia
+Castra Batava
+Ratisbona
+Radaspona
+Rigomagus
+Rostochium
+Sumelocenna
+Stutgardia
+Stuogardia
+Tremonia
+Tubinga
+Tulpiacum
+Tolbiacum
+Vetera
+Colonia Ulpia Traiana
+Ad Flexum
+Aegopolis
+Agria
+Alba Regia
+Alisca
+Altinum
+Annamatia
+Aquincum
+Arrabona
+Brigetio
+Budapestum
+Budapestinum
+Buda Vetus
+Caesariana
+Campona
+Cirpi
+Civitas Archiepiscopalis
+Contra-Aquincum
+Contra Constantiam
+Gorsium
+Herculia
+Intercisa
+Lussonium
+Matrica
+Mursella
+Partiscum
+Quadrata
+Sala
+Savaria
+Scarbantia
+Solva
+Strigonium
+Sopianae
+Tricciana
+Valcum
+Vetus Salina
+Ulcisia Castra
+Corcagia
+Eblana
+Eblanda
+Rugensis civitas
+Grigoriopolis
+Tiraspolis
+Monaecum
+Ad Duodecimum
+Albaniana
+Alcmaria
+Amivadum
+Amstelodamum
+Arenacum
+Blariacum
+Carvium
+Carvo
+Caspingio
+Castra Herculis
+Ceuclum
+Coriovallum
+Daventria
+Eindovia
+Elenio
+Fectio
+Flevum
+Forum Hadriani
+Ganuentum
+Grinnes
+Horgana
+Laurium
+Laurum
+Lefevanum
+Lugdunum
+Lugdunum Batavorum
+Matilo
+Maunnaricium
+Mosae Traiectum
+Municipium Aelium Cananefatum
+Nigrum Pullum
+Praetorium Agrippinae
+Ruraemunde
+Sablones
+Silva Ducis
+Tablis
+Traiectum
+Traiectum ad Mosam
+Ulpia Noviomagus Batavorum
+Venlonum
+Vienna
+Vigenna
+Vadae
+Asloa
+Berga
+Bethania
+Bithomia
+Bilici-Biala
+Bielici-Biala
+Bydgostia
+Calisia
+Cervimontium
+Mons Cervi
+Cracovia
+Culmen
+Elbinga
+Elbingus
+Elbinca
+Elbangum
+Elbingense castrum
+Gedania
+Gedanum
+Dantiscum
+Glivitium
+Ostrovia
+Posnania
+Poznania
+Resovia
+Sandomir
+Siradia
+Stargardia
+Sedinum
+Thorunium
+Varsovia
+Varsavia
+Vratislavia
+Wratislavia
+Archangelopolis
+Asovia
+Astrachanum
+Belogradum
+Caluga
+Casanum
+Catharinoburgum
+Columna
+Demitriovia
+Iaroslavia
+Iuliania
+Moscua
+Mosqua
+Moscovia
+Novogardia Inferior
+Novogardia Magna
+Orenburgum
+Permia
+Petropolis
+Petroburgum
+Pscovia
+Plescovia
+Regiomontium
+Resania
+Rostovia
+Saratovia
+Smolenscum
+Stauropolis
+Susdalia
+Toropetia
+Tueria
+Ustiuga
+Volodimiria
+Vologda
+Viatcia
+Venetica
+Viburga
+Viburgum
+Viburgum Careliorum
+Cassovia
+Castrum Novum
+Bartfa
+Forum Dominarum
+Semnichia
+Celemantia
+Cismarcinum
+Forum Caseorum
+Comaromium
+Crempnichia
+Leuchovia
+Prividia
+Iglovia
+Nova Villa
+Suburbium
+Villa Sub Castro
+Lublovia
+Divinium
+Villa Theutonicalis
+Eperiessinum
+Fragopolis
+Gerulata
+Laugaricio
+Tyrnavia
+Neosolium
+Posonium
+Wratisslaburgium
+Veterosolium
+Vetusolium
+Solium
+Amalia
+Arosia
+Boërosia
+Calmaria
+Caroli Corona
+Christinae portus
+Christiania
+Cimbrorum portus
+Clara Vallis
+Copinga
+Coronia
+Dalecarlius
+Delisboa
+Eckesioea
+Ecksium
+Encopia
+Falcopia
+Gevalia
+Gothia
+Halmostadium
+Hiovia
+Holmia
+Stockholmia
+Hudvicovaldum
+Iuncopia
+Lagaholmia
+Lidcopia
+Lincopia
+Lindesberga
+Linda
+Lula
+Lunda
+Malmogia
+Medicorum villa
+Nicopia
+Norcopia
+Orebrogia
+Oresundae
+Pax Mariae
+Pitovia
+Schedina
+Stenbrovium
+Stocholmia
+Holmia
+Sudercopia
+Telga
+Upsala
+Uraniburgum
+Urbs Mariae
+Vadstenium
+Vemmaria
+Wemmaria
+Vexionia
+Visbia
+Visingsburgum
+Wisingsburgum
+Ystadium
+Istadium
+Ustadium
+Acaunum
+Agaunum
+Ad Fines
+Aquae Helveticae
+Arbor Felix
+Augusta Raurica
+Aventicum
+Basilia
+Basilea
+Berna
+Brienzola
+Brunntrudum
+Bruntraut
+Centum Prata
+Curia
+Eburodunum
+Esquinia
+Ezelinga
+Esselinga
+Genava
+Irgenhausen Castrum
+Lousonna
+Morgiis
+Noviodunum
+Octodurum
+Ponczirrum
+Solodurum
+Salodurum
+Suitia
+Tugium
+Turicum
+Urba
+Vibiscum
+Vindonissa
+Vitudurum
+Alexandria
+Bialoquerca
+Charcovia
+Charkovia
+Chiovia
+Kiovia
+Chersonium
+Chersonesus Nordica
+Czernihovia
+Eupatoria
+Leopolis
+Marinopolis
+Mariupolis
+Melitopolis
+Novogardia Severiae
+Ovidiopolis
+Panticapaeum
+Pereaslavia
+Sebastopolis
+Chersonesus Taurica
+Sympheropolis
+Neapolis Scythica
+Ternopolis
+Theodosia
+Theophania

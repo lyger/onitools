@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 
-from threading import Thread
+from . import socketio
 
 
 def async(f):
     def wrapper(*args, **kwargs):
-        thr = Thread(target=f, args=args, kwargs=kwargs)
-        thr.start()
+        socketio.start_background_task(f, *args, **kwargs)
     return wrapper

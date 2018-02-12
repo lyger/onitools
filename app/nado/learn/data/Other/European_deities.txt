@@ -1,0 +1,696 @@
+Baldr
+Bragi
+Dellingr
+Forseti
+Freyr
+Heimdallr
+Hermóthr
+Höthr
+Hœnir
+Lóthurr
+Loki
+Móthi
+Magni
+Máni
+Mímir
+Meili
+Njörthr
+Odin: Óthinn
+Óthr
+Saxnōt
+Thor
+Týr
+Ullr
+Váli
+Vitharr
+Vé
+Vili
+Baduhenna
+Bil
+Beyla
+Eir
+Ēostre
+Freyja
+Frigg
+Fulla
+Gefjun
+Gersemi
+Gerthr
+Gná
+Gullveig
+Hariasa
+Hlín
+Hretha
+Hnoss
+Ilmr
+Ithunn
+Irpa
+Lofn
+Nanna
+Nerthus
+Njörun
+Rán
+Rindr
+Sága
+Sandraudiga
+Sif
+Sigyn
+Sinthgunt
+Sjöfn
+Skathi
+Snotra
+Sól
+Syn
+Tanfana
+Thrúthr
+Thorgerthr
+Hölgabrúthr
+Vár
+Vör
+Zisa
+Aengus
+Áine
+Banba
+Ériu
+Fódla
+Bodb Derg
+Brigid
+Clíodhna
+Dagda
+Danu
+Dian Cecht
+Étaín
+Lir
+Lugh
+Manannán mac Lir
+Morrígan
+Badb
+Macha
+Nuada Airgetlám
+Ogma
+Trí Dée Dána
+Creidhne
+Goibniu
+Luchtaine
+Abartach
+Abcán
+Abhean
+Aed
+Aoi Mac Ollamain
+Airmed
+Anann
+Beag
+Bé Chuille
+Bébinn
+Boann
+Brea
+Bres
+Brian
+Caer Ibormeith
+Cermait
+Cían
+Danand
+Delbáeth
+Ecne
+Egobail
+Elcmar
+Ernmas
+Fand
+Fiacha mac Delbaíth
+Fionnuala
+Flidais
+Fuamnach
+Iuchar
+Iucharba
+Lí Ban
+Mac Cuill
+Mac Cecht
+Mac Gréine
+Miach
+Midir
+Nechtan
+Neit
+Nemain
+Niamh
+Tuireann
+Eochaid mac Eirc
+Fiacha Cennfinnán
+Fodbgen
+Gaillimh iníon Breasail
+Gann
+Genann
+Rinnal
+Rudraige mac Dela
+Sengann mac Dela
+Sláine mac Dela
+Sreng
+Tailtiu
+Balor
+Buarainech
+Cethlenn
+Cichol Gricenchos
+Conand
+Elatha
+Tethra
+Ethniu
+Amergin Glúingel
+Eber Finn
+Érimón
+Míl Espáine
+Ailill mac Máta
+Conchobar mac Nessa
+Cú Chulainn
+Deirdre
+Donn Cuailnge
+Fergus mac Róich
+Medb
+Amergin mac Eccit
+Athirne
+Blaí Briugu
+Bricriu
+Cathbad
+Celtchar
+Cethern mac Fintain
+Conall Cernach
+Cruinniuc
+Cúscraid
+Dáire mac Fiachna
+Deichtine
+Éogan mac Durthacht
+Fedlimid mac Daill
+Findchóem
+Furbaide Ferbend
+Láeg
+Lóegaire Búadach
+Mugain
+Naoise
+Ness
+Súaltam
+Bélchú
+Cet mac Mágach
+Ferdiad
+Findabair
+Fráech
+Nera
+Cormac Cond Longas
+Dubthach Dóeltenga
+Achall
+Áed Rúad
+Díthorba
+Cimbáeth
+Aífe
+Bláthnat
+Connla
+Cairbre Nia Fer
+Cú Roí
+Emer
+Erc mac Cairpri
+Fedelm
+Fedelm Noíchrothach
+Lugaid mac Con Roí
+Mesgegra
+Scáthach
+Uathach
+Fionn mac Cumhaill
+Caílte mac Rónáin
+Conán mac Morna
+Cumhall
+Diarmuid Ua Duibhne
+Gráinne
+Goll mac Morna
+Liath Luachra
+Oisín
+Oscar
+Aillen
+Bodhmall
+Cormac mac Airt
+Finn Eces
+Mug Ruith
+Plor na mBan
+Sadhbh
+Aibell
+Amadan Dubh
+Cailleach
+Canola
+Crobh Dearg
+Medb Lethderg
+Tlachtga
+Aphrodite
+Apollo
+Ares
+Artemis
+Athena
+Demeter
+Dionysus
+Hades
+Hephaestus
+Hera
+Hermes
+Hestia
+Poseidon
+Zeus
+Achlys
+Aion
+Aether
+Ananke
+Chaos
+Chronos
+Erebus
+Eros
+Hemera
+Hypnos
+Gaia
+Gaea
+Nemesis
+Nesoi
+Nyx
+Uranus
+Ourea
+Phanes
+Pontus
+Tartarus
+Thalassa
+Thanatos
+Coeus
+Crius
+Cronus
+Hyperion
+Iapetus
+Mnemosyne
+Oceanus
+Phoebe
+Rhea
+Tethys
+Theia
+Themis
+Asteria
+Astraeus
+Atlas
+Aura
+Clymene
+Dione
+Helios
+Selene
+Eos
+Epimetheus
+Eurybia
+Eurynome
+Lelantos
+Leto
+Menoetius
+Metis
+Ophion
+Pallas
+Perses
+Prometheus
+Styx
+Alcyoneus
+Chthonius
+Damysus
+Enceladus
+Mimas
+Polybotes
+Porphyrion
+Thoas
+Thoon
+Aloadae
+Otus
+Otos
+Ephialtes
+Anax
+Antaeus
+Antiphates
+Argus Panoptes
+Asterius
+Cacus
+Cyclopes
+Arges
+Brontes
+Steropes
+Polyphemus
+Gegenees
+Geryon
+Hekatonkheires
+Briareus
+Cottus
+Gyges
+Laestrygonians
+Orion
+Talos
+Tityos
+Typhon
+Adephagia
+Adikia
+Aergia
+Agathodaemon
+Agon
+Aidos
+Aisa
+Alala
+Alastor
+Aletheia
+Algea
+Achos
+Ania
+Lupe
+Alke
+Amechania
+Amphilogiai
+Anaideia
+Androktasiai
+Angelia
+Apate
+Apheleia
+Aporia
+Arae
+Arete
+Atë
+Bia
+Caerus
+Corus
+Deimos
+Dikaiosyne
+Dike
+Dolos
+Dysnomia
+Dyssebeia
+Eirene
+Ekecheiria
+Eleos
+Elpis
+Epiphron
+Eris
+Erotes
+Anteros
+Hedylogos
+Hermaphroditus
+Himeros
+Hymen
+Pothos
+Eucleia
+Eulabeia
+Eunomia
+Eupheme
+Eupraxia
+Eusebeia
+Euthenia
+Gelos
+Geras
+Harmonia
+Hebe
+Hedone
+Heimarmene
+Heracles
+Homados
+Homonoia
+Horkos
+Horme
+Hybris
+Hysminai
+Ioke
+Kakia
+Kalokagathia
+Keres
+Koalemos
+Kratos
+Kydoimos
+Lethe
+Limos
+Litae
+Lyssa
+Machai
+Mania
+Moirai
+Clotho
+Lachesis
+Atropos
+Momus
+Moros
+Neikea
+Nike
+Nomos
+Oizys
+Oneiroi
+Epiales
+Morpheus
+Phantasos
+Phobetor
+Palioxis
+Peitharchia
+Peitho
+Penia
+Penthus
+Pepromene
+Pheme
+Philophrosyne
+Philotes
+Phobos
+Phonoi
+Phrike
+Phthonus
+Pistis
+Poine
+Polemos
+Ponos
+Poros
+Praxidike
+Proioxis
+Prophasis
+Ptocheia
+Roma
+Soter
+Soteria
+Sophrosyne
+Techne
+Thrasos
+Tyche
+Zelos
+Jupiter
+Mars
+Quirinus
+Juno
+Minerva
+Ceres
+Liber
+Venus
+Diana
+Vesta
+Vulcan
+Mercury
+Carmentis
+Falacer
+Flora
+Furrina
+Palatua
+Pomona
+Portunus
+Volturnus
+Janus
+Saturn
+Genius
+Neptune
+Sol
+Orcus
+Tellus
+Luna
+Feronia
+Novensides
+Pales
+Salus
+Fortuna
+Fons
+Fides
+Ops
+Vediovis
+Summanus
+Larunda
+Terminus
+Vortumnus
+Lares
+Lucina
+Abundantia
+Acca Larentia
+Acis
+Aerecura
+Aequitas
+Aesculapius
+Aeternitas
+Aeon
+Aius Locutius
+Alernus
+Elernus
+Helernus
+Angerona
+Angitia
+Anna Perenna
+Annona
+Antevorta
+Arimanius
+Aurora
+Averruncus
+Bacchus
+Bellona
+Duellona
+Bona Dea
+Bonus Eventus
+Bubona
+Caca
+Caelus
+Camenae
+Cardea
+Carmenta
+Carmentes
+Carna
+Clementia
+Cloacina
+Concordia
+Consus
+Cupid
+Cura
+Cybele
+Dea Dia
+Dea Tacita
+Decima
+Devera
+Deverra
+Diana Nemorensis
+Discordia
+Dius Fidius
+Di inferi
+Disciplina
+Dis Pater
+Dispater
+Egeria
+Empanda
+Panda
+Epona
+Edesia
+Fama
+Fascinus
+Fauna
+Faunus
+Faustitas
+Februus
+Febris
+Fecunditas
+Felicitas
+Ferentina
+Fornax
+Fontus
+Fufluns
+Fulgora
+Gratiae
+Hercules
+Honos
+Hora
+Indiges
+Intercidona
+Inuus
+Invidia
+Justitia
+Juturna
+Juventas
+Laverna
+Latona
+Lemures
+Levana
+Letum
+Libera
+Liberalitas
+Libertas
+Libitina
+Lua
+Lucifer
+Lupercus
+Lympha
+Mana Genita
+Manes
+Mantus
+Mater Matuta
+Meditrina
+Mefitis
+Mephitis
+Mellona
+Mellonia
+Mena
+Mene
+Mithras
+Molae
+Moneta
+Mors
+Morta
+Murcia
+Murtia
+Mutunus Tutunus
+Naenia
+Nascio
+Necessitas
+Nerio
+Neverita
+Nixi
+Nona
+Nortia
+Nox
+Opis
+Parcae
+Pax
+Penates
+Di Penates
+Picumnus
+Picus
+Pietas
+Pilumnus
+Pluto
+Poena
+Porrima
+Postverta
+Prorsa Postverta
+Priapus
+Proserpina
+Providentia
+Pudicitia
+Querquetulanae
+Quiritis
+Robigo
+Robigus
+Rumina
+Salacia
+Sancus
+Securitas
+Silvanus
+Sol Invictus
+Somnus
+Soranus
+Sors
+Spes
+Stata Mater
+Sterquilinus
+Suadela
+Sulis Minerva
+Tellumo
+Tellurus
+Tempestas
+Terra Mater
+Tiberinus
+Tibertus
+Tranquillitas
+Trivia
+Hecate
+Ubertas
+Unxia
+Vacuna
+Vagitanus
+Vediovus
+Veiovis
+Venilia
+Venelia
+Venti
+Veritas
+Verminus
+Vertumnus
+Vica Pota
+Victoria
+Viduus
+Virbius
+Virtus
+Voluptas

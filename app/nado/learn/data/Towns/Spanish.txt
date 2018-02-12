@@ -1,0 +1,551 @@
+A Coruña
+Aceña de Lara
+Alameda, Andalusia
+Albacete
+Alcalá de Henares
+Alcaucín
+Alcorcón
+Aldehuela de Yeltes
+Alfarnate
+Alfarnatejo
+Algallarín
+Algarrobo
+Algatocín
+Alhaurín de la Torre
+Alhaurín el Grande
+Alicante
+Almargen
+Almería
+Almogía
+Anahuir
+Anucita
+Aratorés
+Arneva
+Arriate
+Arriondas
+Arroyo de Salas
+Ascara
+Atajate
+Badajoz
+Badalona
+Barcelona
+Barranda
+Barrio Arroyo
+Basille
+Benadalid
+Bilbao
+Binibeca
+Borbotó
+Bostronizo
+Burgos
+Buyezo
+Buño
+Bárcena Mayor
+Bélmez
+Caborana
+Calabor
+Calderón
+Camino de Beniel
+Canillas de Aceituno
+Canillas de Albaida
+Canyamars
+Carratraca
+Cartagena
+Casas de Bárcena
+Casas de Cuadra
+Casas de Eufemia
+Casas de Monleón
+Casas de Sotos
+Castell de Castells
+Castellar-Oliveral
+Castellón de la Plana
+Castrovido
+Celada Marlantes
+Cirujeda
+Ciudad Quesada, Alicante
+Civís
+Clares
+Cohiño
+Correntías Altas
+Correntías Bajas
+Correntías Medias
+Cortes de la Frontera
+Coto Ríos
+Coy, Spain
+Cueto, Cantabria
+Cuevas Bajas
+Cádiz
+Córdoba
+Daganzo de Arriba
+Domecelle
+Donostia-San Sebastián
+Dosrius
+Draft:Los Pepones
+Duruelo de la Sierra
+El Azagador
+El Cabanyal
+El Derramador
+El Escorratel
+El Mudamiento
+El Perellonet
+El Pontón
+El Puente, Cantabria
+El Saler
+El Verger
+Elche
+Flaçà
+Foncebadón
+Frigiliana
+Fruxil
+Fuen Vich
+Fuenlabrada
+Gata de Gorgos
+Gaucín
+Getafe
+Gibaja
+Gijón
+Gorga, Spain
+Granada
+Guadalupe, Murcia
+Guadiaro
+Hortunas
+Hoyuelos de la Sierra
+Huelva
+Hurchillo
+Inazares
+Isla
+Jerez de la Frontera
+L'Hospitalet de Llobregat
+La Aparecida
+La Campaneta
+La Manchica
+La Portera
+La Serna de Iguña
+Langa, Spain
+Las Fraguas
+Las Nogueras
+Las Palmas de Gran Canaria
+Lastur
+Leganés
+León
+Lleida
+Logroño
+Los Caños de Meca
+Los Cojos
+Los Duques
+Los Isidros
+Los Llares
+Los Nietos, Cartagena
+Los Pedrones
+Los Ruices
+Luco de Bordón
+Ludeiros
+Madrid
+Madrona
+Maqueda
+Maraña
+Marbella
+Mareny de Barraquetes
+Matanza de Soria
+Mencui
+Monzón
+Moraleja de Matacabras
+Moros, Zaragoza
+Mozota
+Murcia
+Málaga
+Móstoles
+Navalsaz
+Navalón
+Nuestra Señora de la Vega
+Oneta, Spain
+Oteruelo del Valle
+Oviedo
+Palacio, Cantabria
+Palma
+Palomares, Almería
+Pamplona
+Paúles de Lara
+Pedredo
+Pedreña
+Penén de Albosa
+Piornedo
+Piquera de San Esteban
+Ponticiella
+Port d'Alcudia
+Portillo de Toledo
+Puebla de Sanabria
+Quintana del Monte
+Quintanarraya
+Roma
+Sabadell
+Salamanca
+San Antonio
+San Cristóbal de La Laguna
+San Cristóbal, Cantabria
+San Juan de Raicedo
+San Mateo
+San Miguel de Salinas
+San Pedro de Alcántara
+San Sebastián de Garabandal
+San Vicente de León
+Santa Cruz de Tenerife
+Santa Marina del Sil
+Santander
+Seville
+Sobrelapeña
+Son Bou
+Tarragona
+Terrassa
+Tolbaños de Abajo
+Tolbaños de Arriba
+Torraño
+Torre de la Horadada
+Torre del Mar
+Torremocha de Ayllón
+Unquera
+Valdecañas de Cerrato
+Valencia
+Valladolid
+Valle de Valdelaguna
+Vargas, Cantabria
+Veiga do Seixo
+Vigo
+Vilardida
+Villalbos
+Villanueva de Algaidas
+Villar de Olmos
+Vitoria-Gasteiz
+Zahara de los Atunes
+Zamarramala
+Zaragoza
+Álora
+Abruzzi
+Acireale
+Adrano
+Adria
+Agrigento
+Alatri
+Alba
+Alcamo
+Alessandria
+Alghero
+Altamura
+Amalfi
+Anagni
+Ancona
+Andria
+Anzio
+Aosta
+Aquileia
+Aquino
+Ardea
+Arezzo
+Argenta
+Ariano Irpino
+Arpino
+Ascoli Piceno
+Assisi
+Asti
+Atri
+Augusta
+Avellino
+Aversa
+Avezzano
+Avola
+Bagheria
+Bari
+Barletta
+Basilicata
+Bassano del Grappa
+Belgioioso
+Belluno
+Benevento
+Bergamo
+Biella
+Bisceglie
+Bitonto
+Bobbio
+Bologna
+Bolsena
+Bolzano
+Bordighera
+Brescia
+Bressanone
+Brindisi
+Bronte
+Burano
+Busto Arsizio
+Cagliari
+Calabria
+Caltanissetta
+Campania
+Campobasso
+Canosa di Puglia
+Cantù
+Capannori
+Capua
+Carloforte
+Carpi
+Carrara
+Casale Monferrato
+Cascina
+Caserta
+Cassino
+Castel Gandolfo
+Castelfranco Veneto
+Castellammare di Stabia
+Castelvetrano
+Catania
+Catanzaro
+Cava de' Tirreni
+Cefalù
+Ceglie Messapico
+Cento
+Centuripe
+Cerignola
+Cesena
+Chianciano Terme
+Chiavari
+Chieti
+Chioggia
+Città di Castello
+Cividale del Friuli
+Civita Castellana
+Civitanova Marche
+Civitavecchia
+Comiso
+Como
+Conegliano
+Corato
+Cori
+Corleone
+Cortina d'Ampezzo
+Cortona
+Cosenza
+Crema
+Cremona
+Crotone
+Cuneo
+Desio
+Eboli
+Emilia-Romagna
+Empoli
+Enna
+Ercolano
+Erice
+Este
+Fabriano
+Faenza
+Fano
+Favara
+Feltre
+Ferentino
+Fermo
+Ferrara
+Fidenza
+Fiesole
+Florence
+Foggia
+Foligno
+Fondi
+Forio
+Forlì
+Formia
+Fossano
+Frascati
+Friuli-Venezia Giulia
+Frosinone
+Gaeta
+Gela
+Genoa
+Gioia del Colle
+Gorgonzola
+Gorizia
+Gravina in Puglia
+Grosseto
+Grottaglie
+Guastalla
+Gubbio
+Iglesias
+Imola
+Imperia
+Isernia
+Ivrea
+Jesi
+La Spezia
+Lanciano
+Latina
+Lazio
+Lecce
+Lecco
+Legnano
+Licata
+Liguria
+Livorno
+Lodi
+Lombardy
+Loreto
+Lucca
+Lugo
+L'Aquila
+Macerata
+Magenta
+Manduria
+Manfredonia
+Mantua
+Marche
+Marino
+Marsala
+Martina Franca
+Massa
+Matera
+Mazara del Vallo
+Melfi
+Merano
+Messina
+Mestre
+Milan
+Milazzo
+Mirandola
+Modena
+Modica
+Mola di Bari
+Molfetta
+Molise
+Moncalieri
+Mondovì
+Monfalcone
+Monreale
+Montagnana
+Monte Sant'Angelo
+Montecatini Terme
+Monza
+Naples
+Nardò
+Narni
+Nocera Inferiore
+Nola
+Noto
+Novara
+Novi Ligure
+Nuoro
+Olbia
+Oristano
+Ortona
+Orvieto
+Otranto
+Padua
+Palazzolo Acreide
+Palermo
+Paternò
+Pavia
+Perugia
+Pesaro
+Pescara
+Peschiera del Garda
+Pescia
+Piacenza
+Piazza Armerina
+Piedmont
+Pietrasanta
+Pinerolo
+Piombino
+Pisa
+Pistoia
+Pomigliano d'Arco
+Portici
+Porto Torres
+Portofino
+Portogruaro
+Potenza
+Pozzuoli
+Prato
+Puglia
+Ragusa
+Rapallo
+Ravenna
+Reggio di Calabria
+Reggio nell'Emilia
+Rieti
+Rimini
+Rivoli
+Rome
+Rovereto
+Rovigo
+Ruvo di Puglia
+Salerno
+Saluzzo
+San Gimignano
+San Giovanni Rotondo
+San Giuliano Terme
+San Remo
+San Severo
+Sardinia
+Sarno
+Sarzana
+Sassari
+Savona
+Schio
+Sciacca
+Scicli
+Senigallia
+Sessa Aurunca
+Sesto San Giovanni
+Sicily
+Siena
+Sondrio
+Sora
+Sorrento
+Spoleto
+Stresa
+Subiaco
+Sulmona
+Syracuse
+Taormina
+Taranto
+Tarquinia
+Teramo
+Termini Imerese
+Terni
+Terracina
+Tivoli
+Todi
+Torcello
+Torre Annunziata
+Torre del Greco
+Tortona
+Trani
+Trapani
+Trentino
+Trento
+Treviso
+Trieste
+Turin
+Tuscania
+Tuscany
+Udine
+Umbria
+Urbino
+Valle D'Aosta
+Vallombrosa
+Varallo
+Varese
+Vasto
+Veneto
+Venice
+Venosa
+Ventimiglia
+Verbania
+Vercelli
+Verona
+Viareggio
+Vibo Valentia
+Vicenza
+Vigevano
+Viterbo
+Vittoria
+Vittorio Veneto
+Voghera
+Volterra
+

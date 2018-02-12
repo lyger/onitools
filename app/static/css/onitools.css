@@ -43,18 +43,17 @@ body,html{min-height: 100%;}
 
 .logo-bar {
 	position: relative;
-	background-image: url(/static/img/onitools_mascot_lf_100.png);
+	background-image: url(/static/img/onitools_mascot.svg);
+	background-size: 50px 58px;
 	background-repeat: no-repeat;
 	background-position: 5px 0px;
 	padding: 0px;
-	padding-left: 100px;
-	height: 134px;
+	padding-left: 55px;
 }
 
 .navbar-light {
-	position: absolute;
-	bottom: 0px;
 	padding: 0px;
+	padding-top: calc(70px - 41px - 1rem);
 	line-height: 41px;
 }
 
@@ -79,11 +78,19 @@ body,html{min-height: 100%;}
 
 /* lg breakpoint */
 @media (min-width: 992px) {
-	.nav-link.current {
+	.logo-bar {
+		background-size: 100px 116px;
+		padding-left: 110px;
+	}
+	.navbar-light {
+		padding-top: calc(134px - 41px - 1rem);
+	}
+
+	.nav-item.current {
 		padding-right: 1rem !important;
 		padding-left: 1rem !important;
 		border: 1px solid #ced4da;
-		background-color: #F3F5F7;
+		background-color: #f3f5f7;
 		margin-bottom: -1px;
 		border-bottom: none;
 		border-top-right-radius: 10px;
