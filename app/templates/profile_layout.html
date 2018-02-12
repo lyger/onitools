@@ -1,0 +1,20 @@
+{% extends "onitools_layout.html" %}
+
+{% from "_macros.html" import flashed %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="inner-frame row">
+	<div class="col-2 profile-sidebar">
+		<p class="profile-sidebar-item"><a href="{{ url_for('Home.profile_home') }}">Profile home</a></p>
+		<p class="profile-sidebar-item"><a href="{{ url_for_security('change_password') }}">Change password</a></p>
+	</div>
+	<div class="col-10">
+		{{ flashed() }}
+		{% block profilecontent %}{% endblock %}
+	</div>
+</div>
+{% endblock %}

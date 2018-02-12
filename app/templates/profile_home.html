@@ -1,39 +1,26 @@
-{% extends "onitools_layout.html" %}
-
-{% from "_macros.html" import flashed %}
+{% extends "profile_layout.html" %}
 
 {% block title %}Profile: {{ current_user.email }}{% endblock %}
 
-{% block stylesheets %}
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+{% block profilecontent %}
+<h2 id="SozoHeader">Sozo canvases <a href="{{ url_for('Sozo.main') }}" class="btn btn-secondary btn-sm">New</a></h2>
+<div class="card card-body">
+	{% for canvas in current_user.sozo_canvases %}
+		<div class="clearfix profile-list-item">
+			<a class="float-left h4 text-primary" href="{{ url_for('Sozo.show_canvas', stringid=canvas.stringid) }}">
+				{{ canvas.name }}
+			</a>
+
+			<div class="float-right">
+				<button class="btn btn-link" data-toggle="modal" data-target="#renameSozoModal" data-canvasid="{{canvas.stringid}}">Rename</button>
+				<button class="btn btn-link" data-toggle="modal" data-target="#deleteSozoModal" data-canvasid="{{canvas.stringid}}">Delete</button>
+			</div>
+		</div>
+	{% endfor %}
+</div>
 {% endblock %}
 
-{% block body %}
-<div class="inner-frame">
-	{{ flashed() }}
-	<h2 id="SozoHeader">Sozo canvases <a href="{{ url_for('Sozo.main') }}" class="btn btn-secondary btn-sm">New</a></h2>
-	<div class="card card-body col">
-		<div class="row">
-		{% for column in current_user.sozo_canvases | slice(2) %}
-			<div class="col">
-			{% for canvas in column %}
-				<div class="clearfix profile-list-item">
-					<a class="float-left h4 text-primary" href="{{ url_for('Sozo.show_canvas', stringid=canvas.stringid) }}">
-						{{ canvas.name }}
-					</a>
-
-					<div class="float-right">
-						<button class="btn btn-link" data-toggle="modal" data-target="#renameSozoModal" data-canvasid="{{canvas.stringid}}">Rename</button>
-						<button class="btn btn-link" data-toggle="modal" data-target="#deleteSozoModal" data-canvasid="{{canvas.stringid}}">Delete</button>
-					</div>
-				</div>
-			{% endfor %}
-			</div>
-		{% endfor %}
-		</div>
-	</div>
-</div>
-
+{% block footer %}
 <div class="modal fade" id="renameSozoModal" tabindex="-1" role="dialog" aria-labelledby="renameSozoModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -91,7 +78,7 @@
 		var button = $(event.relatedTarget);
 		var canvasID = button.data('canvasid');
 		var form = $(this).find('form');
-		form.attr('action', "{{ url_for('Sozo.rename_canvas', next=url_for('Home.profile') + '#SozoHeader') }}");
+		form.attr('action', "{{ url_for('Sozo.rename_canvas', next=url_for('Home.profile_home') + '#SozoHeader') }}");
 		form.find('#renameCanvasID').val(canvasID);
 	});
 
@@ -99,7 +86,7 @@
 		var button = $(event.relatedTarget);
 		var canvasID = button.data('canvasid');
 		var form = $(this).find('form');
-		form.attr('action', "{{ url_for('Sozo.delete_canvas', next=url_for('Home.profile') + '#SozoHeader') }}");
+		form.attr('action', "{{ url_for('Sozo.delete_canvas', next=url_for('Home.profile_home') + '#SozoHeader') }}");
 		form.find('#deleteCanvasID').val(canvasID);
 	});
 </script>
