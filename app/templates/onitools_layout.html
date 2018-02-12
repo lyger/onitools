@@ -15,7 +15,7 @@
 	<div class="container content">
 		<ul class="nav justify-content-end">
 			{% if current_user.is_authenticated %}
-			<li class="nav-item"><a class="nav-link" href="{{ url_for('Home.profile') }}">{{ current_user.email }}</a></li>
+			<li class="nav-item"><a class="nav-link" href="{{ url_for('Home.profile_home') }}">{{ current_user.email }}</a></li>
 			<li class="nav-item"><a class="nav-link" href="{{ url_for_security('logout') }}{% if 'next' in request.args %}?next={{ request.args.next|urlencode }}{% endif %}">Logout</a></li>
 			{% else %}
 			<li class="nav-item"><a class="nav-link" href="{{ url_for_security('login') }}{% if 'next' in request.args %}?next={{ request.args.next|urlencode }}{% endif %}">Login</a></li>

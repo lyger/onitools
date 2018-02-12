@@ -13,6 +13,5 @@ def main():
 
 @Home.route('/profile')
 @login_required
-def profile():
-    # NOT YET IMPLEMENTED
-    return render_template('profile.html')
+def profile_home():
+    return render_template('profile_home.html')
