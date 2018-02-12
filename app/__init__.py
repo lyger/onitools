@@ -43,11 +43,11 @@ def create_app():
     from .home import Home
     from .mobu import Mobu
     from .sozo import Sozo
-    from .nado import Nado
+#    from .nado import Nado
     app.register_blueprint(Home)
     app.register_blueprint(Sozo, url_prefix='/sozo')
     app.register_blueprint(Mobu, url_prefix='/mobu')
-    app.register_blueprint(Nado, url_prefix='/nado')
+#    app.register_blueprint(Nado, url_prefix='/nado')
 
     @app.before_first_request
     def init_db():
@@ -56,16 +56,16 @@ def create_app():
             'admin', description='')
         member_role = user_datastore.find_or_create_role(
             'member', description='')
-        admin_user = user_datastore.get_user(1)
-        user_datastore.add_role_to_user(admin_user, admin_role)
+        #admin_user = user_datastore.get_user(1)
+        #user_datastore.add_role_to_user(admin_user, admin_role)
         db.session.commit()
 
     # Define for all templates (navbar, etc.).
     @app.context_processor
     def inject_globals():
         return {
-            'pages': ['Sozo', 'Mobu', 'Nado']
-            # 'pages': ['Sozo', 'Mobu']
+            #'pages': ['Sozo', 'Mobu', 'Nado']
+            'pages': ['Sozo', 'Mobu']
         }
 
     # Handle errors.
