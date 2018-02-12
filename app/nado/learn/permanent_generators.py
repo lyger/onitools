@@ -32,12 +32,18 @@ generators = OrderedDict([
             'Elf last names',
             'Dwarf first names',
             'Dwarf last names',
+            'Orc'
         ]),
     ('Other',
         [
             'Monsters',
             'Angels',
             'Demons',
+            'African deities',
+            'East Asian deities',
+            'European deities',
+            'Indian deities',
+            'Mesoamerican deities'
         ])
 ])
 
@@ -166,6 +172,9 @@ class __ModelWrapper:
         return genned
 
     def extend_data(self, new_data):
+        # Filter out out-of-vocabulary suggestions.
+        new_data = \
+            [w for w in new_data if all(c in self.generator.c2i for c in w)]
         with self.lock:
             self.data.extend(new_data)
             self.has_new_data = True
@@ -184,7 +193,8 @@ def add_data(category, generator, new_data):
 @async
 def start(num, callback):
     dyparams = dy.DynetParams()
-    dyparams.set_mem(250)
+    dyparams.set_mem(100)
+    dyparams.set_autobatch(True)
 
     dyparams.init()
 

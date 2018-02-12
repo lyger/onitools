@@ -1,0 +1,20 @@
+{% macro flashed() %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      {% if category == 'error' %}
+		<div class="alert alert-danger" role="alert">{{ message | safe }}</div>
+	  {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+{% endmacro %}
+
+{% macro mobile_warning(appname) %}
+<div class="alert alert-danger alert-dismissible fade show d-block d-lg-none" role="alert">
+	<strong>{{ appname }}</strong> is not designed to work on smartphone or tablet. Please view this page on desktop.
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	<span aria-hidden="true">&times;</span>
+	</button>
+</div>
+{% endmacro %}

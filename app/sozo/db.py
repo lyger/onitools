@@ -10,3 +10,5 @@ class CanvasData(db.Model):
     passhash = db.Column(db.String(100))
     metaopts = db.Column(db.PickleType, nullable=False)
     data = db.Column(db.PickleType)
+
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)

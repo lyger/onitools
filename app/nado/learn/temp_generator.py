@@ -12,6 +12,7 @@ def stdout_callback(e, *args):
 if __name__ == '__main__':
     dyparams = dy.DynetParams()
     dyparams.set_mem(20)
+    dyparams.set_autobatch(True)
 
     dyparams.init()
 

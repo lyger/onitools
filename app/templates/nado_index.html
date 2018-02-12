@@ -1,7 +1,5 @@
 {% extends "onitools_layout.html" %}
 
-{% from "onitools_layout.html" import flashed %}
-
 {% block stylesheets %}
 	<link rel="stylesheet" href="{{ url_for('static', filename='font-awesome/css/font-awesome.min.css') }}">
 {% endblock %}
@@ -10,7 +8,6 @@
 
 {% block body %}
 <div class="inner-frame">
-	{{ flashed() }}
 	<h2>Nado name generator</h2>
 
 	<div id="root"></div>
@@ -23,6 +20,8 @@
 	<div class="collapse" id="nadoExplanation">
 		<div class="card card-body">
 			<p>"Nado" comes from the Japanese word for "et cetera", and is a machine learning word generator that learns from examples and produces similar words.</p>
+
+			<p>Names produced by this generator are intended for use in tabletop RPGs or creative writing. They are not meant to be accurate representations of real-life cultures. Category names refer to the source of the original data that the generator learned from.</p>
 
 			<p>For those interested in the internals, Nado's model is a character-based long short term memory (LSTM) neural network. The generative model is trained on cross-entropy loss over the training data, and output is generated with a beam search of width 2.</p>
 		</div>

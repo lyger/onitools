@@ -14,7 +14,8 @@ sid_connections = {}
 
 
 def log(*msg):
-    print(datetime.today().strftime("%y-%m-%d %H:%M:%S"), *msg)
+    #print(datetime.today().strftime("%y-%m-%d %H:%M:%S"), *msg)
+    pass
 
 
 class CanvasHandler:

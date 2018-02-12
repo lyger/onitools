@@ -6,30 +6,37 @@
 	<meta name="viewport" content="width=device-width, initial-scale=0.75">
 
 	<link rel="shortcut icon" href="{{ url_for('static', filename='onitools_favicon.ico') }}">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/onitools.css') }}">
 {% block stylesheets %}{% endblock %}
 </head>
 <body>
 
 	<div class="container content">
+		<ul class="nav justify-content-end">
+			{% if current_user.is_authenticated %}
+			<li class="nav-item"><a class="nav-link" href="{{ url_for('Home.profile') }}">{{ current_user.email }}</a></li>
+			<li class="nav-item"><a class="nav-link" href="{{ url_for_security('logout') }}{% if 'next' in request.args %}?next={{ request.args.next|urlencode }}{% endif %}">Logout</a></li>
+			{% else %}
+			<li class="nav-item"><a class="nav-link" href="{{ url_for_security('login') }}{% if 'next' in request.args %}?next={{ request.args.next|urlencode }}{% endif %}">Login</a></li>
+			<li class="nav-item"><a class="nav-link" href="{{ url_for_security('register') }}{% if 'next' in request.args %}?next={{ request.args.next|urlencode }}{% endif %}">Register</a></li>
+			{% endif %}
+		</ul>
 
 {% block precontent %}{% endblock %}
 
-		<div class="logo-bar clearfix">
+		<div class="logo-bar">
 			<nav class="navbar navbar-expand-lg navbar-light">
 				<h1 class="logo-home"><a href="{{ url_for('Home.main') }}">Onitools.moe</a></h1>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarLinks" aria-controls="navbarLinks" aria-expanded="false" aria-label="Toggle navigation">
 				    <span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarLinks">
-					<ul class="navbar-nav">
+					<div class="navbar-nav">
 {% for page in pages %}
-						<li class="nav-item{% if page == active_page %} current{% endif %}">
-							<a class="nav-link" href="{{ url_for(page + '.main') }}">{{ page }}</a>
-						</li>
+						<a class="nav-item nav-link{% if page == active_page %} current{% endif %}" href="{{ url_for(page + '.main') }}">{{ page }}</a>
 {% endfor %}
-					</ul>
+					</div>
 				</div>
 			</nav>
 		</div>
@@ -45,26 +52,7 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-<script src="{{ url_for('static', filename='onitools.js') }}"></script>
+{# <script src="{{ url_for('static', filename='onitools.js') }}"></script> #}
 {% block scripts %}{% endblock %}
 
 </html>
-
-{% macro flashed() %}
-{% with messages = get_flashed_messages() %}
-  {% if messages %}
-    {% for message in messages %}
-	<div class="alert alert-danger" role="alert">{{ message | safe }}</div>
-    {% endfor %}
-  {% endif %}
-{% endwith %}
-{% endmacro %}
-
-{% macro mobile_warning(appname) %}
-<div class="alert alert-danger alert-dismissible fade show d-block d-lg-none" role="alert">
-	<strong>{{ appname }}</strong> is not designed to work on smartphone or tablet. Please view this page on desktop.
-	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-	<span aria-hidden="true">&times;</span>
-	</button>
-</div>
-{% endmacro %}

@@ -5,6 +5,9 @@ from flask import flash, redirect, render_template, request, session, url_for
 from . import Nado
 from .learn.permanent_generators import generators
 
+genList = [{'category': cat, 'generators': gens}
+           for cat, gens in generators.items()]
+
 
 @Nado.context_processor
 def inject_globals():
@@ -15,13 +18,4 @@ def inject_globals():
 
 @Nado.route('/', methods=['GET', 'POST'])
 def main():
-    if request.method == 'POST':
-        train_data = request.form['nadoData']
-    return render_template('nado_index.html', generators=generators)
-
-
-# @Nado.route('/custom', methods=['GET', 'POST'])
-# def custom():
-#     if request.method == 'POST':
-#         train_data = request.form['nadoData']
-#     return render_template('nado_custom.html')
+    return render_template('nado_index.html', generators=genList)

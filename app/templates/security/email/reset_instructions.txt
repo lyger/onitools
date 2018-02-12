@@ -1,0 +1,6 @@
+Click the link below to reset your password:
+
+{{ reset_link }}
+
+----------
+{{ url_for('Home.main', _external=True) }}

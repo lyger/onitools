@@ -1,0 +1,22 @@
+{% extends "onitools_layout.html" %}
+
+{% from "security/_macros.html" import render_field_with_errors, render_field %}
+{% from "_macros.html" import flashed %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+<div class="inner-frame thin">
+	{{ flashed() }}
+	<h2>{{ _('Register') }}</h2>
+	<form action="{{ url_for_security('register') }}" method="POST" name="register_user_form">
+	  {{ register_user_form.hidden_tag() }}
+	  {{ render_field_with_errors(register_user_form.email, class_="form-control") }}
+	  {{ render_field_with_errors(register_user_form.password, class_="form-control") }}
+	  {% if register_user_form.password_confirm %}
+	    {{ render_field_with_errors(register_user_form.password_confirm, class_="form-control") }}
+	  {% endif %}
+	  {{ render_field(register_user_form.submit, class_="btn btn-secondary") }}
+	</form>
+</div>
+{% endblock %}

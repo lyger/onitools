@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from flask import flash, redirect, render_template, request, session, url_for
+from flask_security import current_user, login_required
 from werkzeug.security import generate_password_hash, \
     check_password_hash
 
@@ -41,7 +42,12 @@ def main():
             'truew': request.form['width'],
             'trueh': request.form['height']
         }
+
         canvas = CanvasData(name=canvas_name, metaopts=metaopts)
+
+        if current_user.is_authenticated:
+            current_user.sozo_canvases.append(canvas)
+            db.session.add(current_user)
 
         db.session.add(canvas)
         db.session.commit()
@@ -84,3 +90,37 @@ def show_canvas(stringid):
     return render_template('sozo_canvas.html',
                            canvas_name=canvas.name,
                            metaopts=canvas.metaopts)
+
+
+@Sozo.route('/delete', methods=['POST'])
+@login_required
+def delete_canvas(stringid=None):
+    next_url = request.args.get('next', url_for('.main'))
+    stringid = request.form.get('canvasID', None)
+
+    if stringid:
+        canvas = CanvasData.query.filter_by(stringid=stringid).first()
+
+        if canvas and canvas.user_id == current_user.id:
+            db.session.delete(canvas)
+            db.session.commit()
+
+    return redirect(next_url)
+
+
+@Sozo.route('/rename', methods=['POST'])
+@login_required
+def rename_canvas(stringid=None):
+    next_url = request.args.get('next', url_for('.main'))
+    stringid = request.form.get('canvasID', None)
+
+    if stringid:
+        canvas = CanvasData.query.filter_by(stringid=stringid).first()
+
+        if canvas and canvas.user_id == current_user.id:
+            new_name = request.form.get('newSozoName', 'Canvas')
+            canvas.name = new_name
+            db.session.add(canvas)
+            db.session.commit()
+
+    return redirect(next_url)

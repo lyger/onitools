@@ -1,6 +1,6 @@
 {% extends "onitools_layout.html" %}
 
-{% from "onitools_layout.html" import mobile_warning %}
+{% from "_macros.html" import mobile_warning %}
 
 {% block title %}{{ canvas_name }}{% endblock %}
 
@@ -24,7 +24,7 @@
 			</div> <!-- /row -->
 
 			<div class="row">
-				<div class="btn-group" data-toggle="buttons" style="width: 100%;">
+				<div class="btn-group btn-group-toggle" data-toggle="buttons" style="width: 100%;">
 					<label class="btn btn-secondary active" style="width: 50%;">
 						<input type="radio" name="tool" autocomplete="off" value="pencil" checked> Pencil
 					</label>
@@ -38,7 +38,9 @@
 				<label for="pencilwidth">Pencil weight:</label>
 				<div class="input-group">
 					<input id="pencilwidth" type="number" min="1" max="20" step="1" value="3" class="form-control">
-					<span class="input-group-addon">px</span>
+					<div class="input-group-append">
+						<span class="input-group-text">px</span>
+					</div>
 				</div> <!-- /input-group -->
 			</div> <!-- /row -->
 
@@ -51,7 +53,9 @@
 				<label for="textsize">Text size:</label>
 				<div class="input-group">
 					<input id="textsize" type="number" min="10" max="50" step="1" value="20" class="form-control">
-					<span class="input-group-addon">px</span>
+					<div class="input-group-append">
+						<span class="input-group-text">px</span>
+					</div>
 				</div> <!-- /input-group -->
 			</div> <!-- /row -->
 
