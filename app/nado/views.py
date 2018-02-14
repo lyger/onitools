@@ -16,6 +16,6 @@ def inject_globals():
     }
 
 
-@Nado.route('/', methods=['GET', 'POST'])
+@Nado.route('/', methods=['GET'])
 def main():
     return render_template('nado_index.html', generators=genList)

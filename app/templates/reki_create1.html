@@ -1,0 +1,22 @@
+{% extends 'onitools_layout.html' %}
+
+{% from "_macros.html" import flashed, horizontal_form_group %}
+
+{% block title %}Create new Reki{% endblock %}
+
+{% block body %}
+<div class="inner-frame thin p-5">
+	{{ flashed() }}
+	<h2>Step 1</h2>
+
+	<form action="{{ url_for('.create_new1') }}" method="POST">
+		{{ form.csrf_token }}
+		{{ horizontal_form_group(form.name) }}
+		{{ horizontal_form_group(form.era_name) }}
+		{{ horizontal_form_group(form.num_months) }}
+		{{ horizontal_form_group(form.num_weekdays) }}
+		{{ horizontal_form_group(form.round_length, addon='seconds', info='Note: this will be the calendar\'s smallest unit of time.')}}
+		<input class="btn btn-secondary" type="submit" value="Next"/>
+	</form>
+</div>
+{% endblock %}

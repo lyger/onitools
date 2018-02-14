@@ -18,3 +18,41 @@
 	</button>
 </div>
 {% endmacro %}
+
+{% macro standard_form_group(field, wrapper_class='', label_class='') %}
+<div class="form-group {{wrapper_class}}">
+	{{ field.label(class_=label_class) }}
+	{{ field(class_='form-control')|safe }}
+	{% if field.errors %}
+    {% for error in field.errors %}
+      <small class="form-text text-danger" role="alert">{{ error }}</small>
+    {% endfor %}
+    {% endif %}
+</div>
+{% endmacro %}
+
+{% macro horizontal_form_group(field, label_class='col', input_class='col', control_class='form-control', addon=None, info=None) %}
+<div class="form-group row">
+	{{ field.label(class_=label_class ~ ' col-form-label') }}
+	<div class="{{ input_class }}">
+	{%- if addon %}
+	<div class="input-group">
+		{{ field(class_='form-control')|safe }}
+		<div class="input-group-append">
+			<span class="input-group-text">{{ addon }}</span>
+		</div>
+	</div>
+	{%- else -%}
+	{{ field(class_=control_class)|safe }}
+	{% endif -%}
+	{%- if info %}
+	  <small class="form-text">{{ info }}</small>
+	{% endif -%}
+	{% if field.errors -%}
+    {%- for error in field.errors -%}
+      <small class="form-text text-danger" role="alert">{{ error }}</small>
+    {%- endfor -%}
+    {%- endif %}
+	</div>
+</div>
+{% endmacro %}

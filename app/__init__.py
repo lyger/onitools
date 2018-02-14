@@ -3,12 +3,13 @@
 from eventlet import monkey_patch
 monkey_patch()
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request, url_for
 from flask_mail import Mail
 from flask_security import Security
 from flask_session import Session
 from flask_socketio import SocketIO
 from flask_sqlalchemy import SQLAlchemy
+from flask_uploads import patch_request_class
 from flask_wtf.csrf import CSRFProtect
 from werkzeug.exceptions import default_exceptions
 
@@ -43,11 +44,16 @@ def create_app():
     from .home import Home
     from .mobu import Mobu
     from .sozo import Sozo
-    from .nado import Nado
+    # from .nado import Nado
+    from .reki import Reki
     app.register_blueprint(Home)
     app.register_blueprint(Sozo, url_prefix='/sozo')
     app.register_blueprint(Mobu, url_prefix='/mobu')
-    app.register_blueprint(Nado, url_prefix='/nado')
+    # app.register_blueprint(Nado, url_prefix='/nado')
+    app.register_blueprint(Reki, url_prefix='/reki')
+
+    # Set a maximum request size of 20 MB.
+    patch_request_class(app, size=20 * 1024 * 1024)
 
     @app.before_first_request
     def init_db():
@@ -64,12 +70,13 @@ def create_app():
     @app.context_processor
     def inject_globals():
         return {
-            'pages': ['Sozo', 'Mobu', 'Nado']
-            # 'pages': ['Sozo', 'Mobu']
+            # 'pages': ['Sozo', 'Mobu', 'Nado', 'Reki']
+            'pages': ['Sozo', 'Mobu', 'Reki']
         }
 
     # Handle errors.
     def handle_http_error(e):
+        next_url = url_for('Home.main')
         try:
             message = 'Something went wrong.'
             if e.code == 401 or e.code == 403:
@@ -78,16 +85,21 @@ def create_app():
                 message = 'Sorry, we couldn\'t find what you were looking for.'
             elif e.code == 405 or e.code == 408:
                 message = 'The server couldn\'t process your request.'
+            elif e.code == 413:
+                message = 'Request too large.'
+                next_url = request.path
 
             return render_template('error.html',
                                    error_code=e.code,
-                                   message=message), e.code
+                                   message=message,
+                                   next_url=next_url), e.code
         except:
             message = 'Something went wrong. ' + \
                 'Please contact the server administrator.'
             return render_template('error.html',
                                    error_code=500,
-                                   message=message), 500
+                                   message=message,
+                                   next_url=next_url), 500
 
     for code in default_exceptions:
         app.errorhandler(code)(handle_http_error)
