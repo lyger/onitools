@@ -78,17 +78,20 @@ class FileRequiredIf(RequiredIfMixin, FileRequired):
 class CreateRekiForm1(FlaskForm):
     name = StringField('Calendar name',
                        validators=[InputRequired(), Length(min=1, max=60)])
-    era_name = StringField('Current era', default='AD',
-                           validators=[InputRequired(), Length(min=1, max=12)])
+    era_name = StringField('Current era suffix', default='AD',
+                           validators=[InputRequired(), Length(min=1, max=10)])
     num_months = \
         IntegerField('Months per year', default=12,
-                     validators=[InputRequired(), NumberRange(min=1, max=50)])
+                     validators=[InputRequired(), NumberRange(min=3, max=50)])
     num_weekdays = \
         IntegerField('Days per week', default=7,
-                     validators=[InputRequired(), NumberRange(min=1, max=20)])
+                     validators=[InputRequired(), NumberRange(min=3, max=20)])
     round_length = \
-        IntegerField('Length of a game round', default=6,
+        IntegerField('Seconds in a game round', default=6,
                      validators=[InputRequired(), NumberRange(min=1)])
+    num_moons = \
+        IntegerField('Number of moons in world', default=1,
+                     validators=[InputRequired(), NumberRange(min=1, max=5)])
 
 
 class CreateRekiForm2(FlaskForm):
@@ -97,8 +100,8 @@ class CreateRekiForm2(FlaskForm):
 
 class CreateRekiForm3(FlaskForm):
     start_year = \
-        IntegerField(default=0,
-                     validators=[InputRequired(), NumberRange(min=0)])
+        IntegerField(default=1,
+                     validators=[InputRequired(), NumberRange(min=1)])
     use_leap_year = BooleanField('Use leap year', default=False)
     leap_every = \
         IntegerField(default=4,
@@ -109,9 +112,9 @@ class CreateRekiForm3(FlaskForm):
                      validators=[InputRequiredIf('use_leap_year'),
                                  NumberRange(min=1, max=5)])
     leap_basis_year = \
-        IntegerField(default=0,
+        IntegerField(default=1,
                      validators=[InputRequiredIf('use_leap_year'),
-                                 NumberRange(min=0)])
+                                 NumberRange(min=1)])
     use_map = BooleanField('Use map', default=True)
     map_width = \
         IntegerField('Map width', default=1000,

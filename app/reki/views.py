@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
 
-from flask import flash, redirect, render_template, request, session, url_for
+from flask import jsonify, redirect, render_template, request, session, url_for
 from flask_security import current_user, login_required
-from sqlalchemy.orm import load_only
+from sqlalchemy.orm import load_only, defer
 from wtforms import IntegerField, SelectField, StringField
-from wtforms.validators import InputRequired, NumberRange, ValidationError
+from wtforms.validators import InputRequired, NumberRange, Length, ValidationError
+from base64 import b64encode
 from itertools import zip_longest
 
 from . import Reki
 from .db import db, model_from_form, RekiData
-from .events import active_rekis
 from .forms import CreateRekiForm1, CreateRekiForm2, CreateRekiForm3
+from .. import csrf
 
 DEFAULT_MONTHS = ['January', 'February', 'March', 'April',
                   'May', 'June', 'July', 'August',
@@ -18,6 +19,9 @@ DEFAULT_MONTHS = ['January', 'February', 'March', 'April',
 DEFAULT_MONTH_DAYS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 DEFAULT_WEEKDAYS = ['Sunday', 'Monday', 'Tuesday',
                     'Wednesday', 'Thursday', 'Friday', 'Saturday']
+
+# Global storage.
+active_rekis = {}
 
 
 @Reki.context_processor
@@ -58,8 +62,12 @@ def create_new2():
     class F(CreateRekiForm2):
         pass
 
-    for i, mn, numdays in zip_longest(range(form_data['step1']['num_months']),
-                                      DEFAULT_MONTHS, DEFAULT_MONTH_DAYS):
+    num_months = form_data['step1']['num_months']
+    num_weekdays = form_data['step1']['num_weekdays']
+
+    for i, mn, numdays in zip_longest(range(num_months),
+                                      DEFAULT_MONTHS[:num_months],
+                                      DEFAULT_MONTH_DAYS[:num_months]):
         if not mn:
             mn = 'Month {}'.format(i + 1)
         if not numdays:
@@ -72,8 +80,8 @@ def create_new2():
                              validators=[InputRequired(),
                                          NumberRange(min=1, max=100)]))
 
-    for i, day in zip_longest(range(form_data['step1']['num_weekdays']),
-                              DEFAULT_WEEKDAYS):
+    for i, day in zip_longest(range(num_weekdays),
+                              DEFAULT_WEEKDAYS[:num_weekdays]):
         if not day:
             day = 'Day {}'.format(i + 1)
         setattr(F, 'weekday_{}_name'.format(i),
@@ -152,6 +160,23 @@ def create_new3():
             SelectField(choices=monthsel,
                         default=min(1, len(monthsel) - 1), coerce=int)
 
+    for i in range(form_data['step1']['num_moons']):
+        moon_name = 'Moon{}'.format(' {}'.format(i + 1) if (i > 0) else '')
+        setattr(F, 'moon_{}_name'.format(i),
+                StringField(default=moon_name,
+                            validators=[InputRequired(),
+                                        Length(min=1, max=60)]))
+        setattr(F, 'moon_{}_cycle'.format(i),
+                IntegerField(default=29,
+                             validators=[InputRequired(), NumberRange(min=1)]))
+        setattr(F, 'moon_{}_day'.format(i),
+                IntegerField(default=1,
+                             validators=[InputRequired(), NumberRange(min=1),
+                                         dayInMonth('moon_{}_month'.format(i))]))
+        setattr(F, 'moon_{}_month'.format(i),
+                SelectField(choices=monthsel,
+                            default=0, coerce=int))
+
     form = F()
     if form.validate_on_submit():
         all_data = {}
@@ -170,7 +195,8 @@ def create_new3():
         return redirect(url_for('.run_app', rid=reki.id))
 
     return render_template('reki_create3.html', form=form,
-                           era=form_data['step1']['era_name'])
+                           era=form_data['step1']['era_name'],
+                           num_moons=form_data['step1']['num_moons'])
 
 
 @Reki.route('/run')
@@ -191,14 +217,83 @@ def run_app():
     return render_template('reki_app.html', title=reki.name)
 
 
+@Reki.route('/_get_reki')
+@login_required  # DISABLE FOR TESTING as React server is cross-origin.
+def get_reki():
+    # The only way this could have ended up here is if the current user
+    # owns the Reki and it exists. No need to validate further.
+    reki_id = active_rekis.get(current_user.id, None)
+    # reki_id = active_rekis[1]
+
+    if not reki_id:
+        # Error code 1: Reki not chosen.
+        return jsonify(code=1)
+
+    reki = RekiData.query.get(reki_id)
+
+    # Return code 0: success.
+    ret = {'code': 0,
+           'rid': reki_id,
+           'options': reki.options,
+           'settings': reki.settings,
+           'time': reki.time,
+           'world_data': reki.world_data}
+
+    if reki.settings['map'] is not None:
+        img_data = b64encode(reki.map_image).decode('utf-8')
+        ret['map_imgdata'] = img_data
+
+    return jsonify(ret)
+
+
+@Reki.route('/_save_reki', methods=['POST'])
+@login_required  # DISABLE FOR TESTING as React server is cross-origin.
+# @csrf.exempt
+def save_reki():
+    data = request.get_json(silent=True)
+
+    reki_id = active_rekis.get(current_user.id, None)  # DISABLED FOR DEBUG
+    # reki_id = active_rekis[1]
+    if data.get('rid', -1) != reki_id:
+        # Error code 2: trying to save to wrong reki.
+        return jsonify(code=2)
+
+    reki = RekiData.query.get(reki_id)
+
+    time = data.get('time', None)
+    options = data.get('options', None)
+    world_data = data.get('world_data', None)
+
+    if time:
+        reki.time = time
+    if options:
+        reki.options = options
+    if world_data:
+        reki.world_data = world_data
+
+    db.session.add(reki)
+    db.session.commit()
+
+    if data.get('quit', False):
+        # pass
+        del active_rekis[current_user.id]  # DISABLED FOR DEBUG
+
+    # Code 0, everything went OK.
+    return jsonify(code=0)
+
+
 @Reki.route('/delete', methods=['POST'])
 @login_required
 def delete():
     next_url = request.args.get('next', url_for('.main'))
-    reki_id = request.args.get('RekiID', None)
+    reki_id = request.form.get('RekiID', None)
 
     if reki_id:
-        reki = RekiData.query.get(reki_id)
+        reki = RekiData.query.options(defer('map_image')).get(reki_id)
+
+        if (current_user.id in active_rekis) and \
+                (active_rekis[current_user.id] == reki.id):
+            del active_rekis[current_user.id]
 
         if reki and reki.user_id == current_user.id:
             db.session.delete(reki)
@@ -214,7 +309,7 @@ def rename():
     reki_id = request.form.get('RekiID', None)
 
     if reki_id:
-        reki = RekiData.query.get(reki_id)
+        reki = RekiData.query.options(load_only('name')).get(reki_id)
 
         if reki and reki.user_id == current_user.id:
             new_name = request.form.get('newRekiName', 'My Reki')

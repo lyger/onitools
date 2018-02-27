@@ -85,7 +85,7 @@ def show_canvas(stringid):
                                    stringid=stringid)
 
     if stringid not in active_canvases:
-        active_canvases[stringid] = CanvasHandler(canvas)
+        active_canvases[stringid] = CanvasHandler(canvas.id)
 
     return render_template('sozo_canvas.html',
                            canvas_name=canvas.name,

@@ -6,12 +6,17 @@ monkey_patch()
 from flask import Flask, render_template, request, url_for
 from flask_mail import Mail
 from flask_security import Security
-from flask_session import Session
+from flask_sessionstore import Session
 from flask_socketio import SocketIO
 from flask_sqlalchemy import SQLAlchemy
 from flask_uploads import patch_request_class
 from flask_wtf.csrf import CSRFProtect
+
+from redis import Redis
 from werkzeug.exceptions import default_exceptions
+
+# DEBUG ONLY
+# from flask_cors import CORS
 
 
 db = SQLAlchemy()
@@ -20,6 +25,8 @@ mail = Mail()
 security = Security()
 sess = Session()
 socketio = SocketIO(manage_session=False)
+
+redisInstance = Redis()
 
 
 def create_app():
@@ -40,16 +47,19 @@ def create_app():
     sess.init_app(app)
     socketio.init_app(app)
 
+    # DEBUG ONLY
+    # CORS(app)
+
     # Blueprints.
     from .home import Home
     from .mobu import Mobu
     from .sozo import Sozo
-    # from .nado import Nado
+    from .nado import Nado
     from .reki import Reki
     app.register_blueprint(Home)
     app.register_blueprint(Sozo, url_prefix='/sozo')
     app.register_blueprint(Mobu, url_prefix='/mobu')
-    # app.register_blueprint(Nado, url_prefix='/nado')
+    app.register_blueprint(Nado, url_prefix='/nado')
     app.register_blueprint(Reki, url_prefix='/reki')
 
     # Set a maximum request size of 20 MB.
@@ -62,16 +72,16 @@ def create_app():
             'admin', description='')
         member_role = user_datastore.find_or_create_role(
             'member', description='')
-        admin_user = user_datastore.get_user(1)
-        user_datastore.add_role_to_user(admin_user, admin_role)
+        # admin_user = user_datastore.get_user(1)
+        # user_datastore.add_role_to_user(admin_user, admin_role)
         db.session.commit()
 
     # Define for all templates (navbar, etc.).
     @app.context_processor
     def inject_globals():
         return {
-            # 'pages': ['Sozo', 'Mobu', 'Nado', 'Reki']
-            'pages': ['Sozo', 'Mobu', 'Reki']
+            'pages': ['Sozo', 'Mobu', 'Nado', 'Reki']
+            # 'pages': ['Sozo', 'Mobu', 'Reki']
         }
 
     # Handle errors.

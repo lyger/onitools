@@ -7,17 +7,19 @@
 {% block body %}
 <div class="inner-frame">
 	{{ flashed() }}
-	<h2>Reki timeline manager</h2>
+	<h2>Reki timeline manager <span class="badge badge-secondary">Beta</span></h2>
 
 	<p>"Reki" comes from the Japanese word for "calendar", and is a tool for managing in-game time for tabletop RPGs. Reki lets you:</p>
 
 	<ul>
 		<li>Customize and track years, months, and days of the week.</li>
-		<li>Track initiative.</li>
-		<li>Schedule events, such as "orcs attack in 3 days" or "paralyzation ends in 5 rounds", and receive reminders when they occur in-game.</li>
-		<li>Automatically generate weather patterns, as well as schedule custom weather phenomena.</li>
+		<li>Schedule events, such as "orcs attack in 3 days" or "paralyzation ends in 5 rounds", and receive notifications when they occur in-game.</li>
 		<li>Track the rate at which characters and rumors travel around your world.</li>
 	</ul>
+
+	<div class="alert alert-info">
+		<strong>Reki is still in beta.</strong> You may experience bugs. Please report anything you find to <a href="mailto:admin@onitools.moe">admin@onitools.moe</a>.
+	</div>
 
 	{% if current_user.is_authenticated -%}
 		<p class="text-center"><a class="btn btn-secondary" href="{{ url_for('.create_new1') }}">New Reki</a></p>
