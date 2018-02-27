@@ -1,0 +1,169 @@
+{% extends 'onitools_layout.html' %}
+
+{% from "_macros.html" import flashed, standard_form_group, horizontal_form_group %}
+
+{% block title %}Create new Reki{% endblock %}
+
+{% macro multiErrorCol(fieldList) %}
+<div class="col mb-3">
+{% for field in fieldList -%}
+{%- if field.errors -%}
+{%- for error in field.errors -%}
+  <small class="form-text text-danger" role="alert">{{ error }}</small>
+{%- endfor -%}
+{%- endif -%}
+{%- endfor %}
+</div>
+{% endmacro %}
+
+{% block body %}
+<div class="inner-frame thin p-5">
+	{{ flashed() }}
+	<h2>Step 3</h2>
+
+	<form action="{{ url_for('.create_new3') }}" method="POST" enctype="multipart/form-data">
+		{{ form.csrf_token }}
+		<h3 class="mt-3">Starting date</h3>
+		<div class="form-row">
+			{{ form.start_weekday(class_='custom-select col-2')|safe }}
+			<div class="col-auto col-form-label">
+				,
+			</div>
+			{{ form.start_day(class_='form-control col-1')|safe }}
+			<div class="col-auto col-form-label">
+				of
+			</div>
+			{{ form.start_month(class_='custom-select col-3')|safe }}
+			<div class="input-group col-4">
+				{{ form.start_year(class_='form-control')|safe }}
+				<div class="input-group-append">
+					<span class="input-group-text">{{ era }}</span>
+				</div>
+			</div>
+		</div>
+		{{ multiErrorCol([form.start_weekday, form.start_day, form.start_month, form.start_year]) }}
+
+		<h3 class="mt-3">Natural events</h3>
+		<div class="form-row mb-3">
+			<div class="col-auto col-form-label">
+				Summer solstice occurs on the
+			</div>
+			{{ form.solstice_day(class_='form-control col-1')|safe }}
+			<div class="col-auto col-form-label">
+				of
+			</div>
+			{{ form.solstice_month(class_='custom-select col-3')|safe }}
+		</div>
+		{{ multiErrorCol([form.solstice_day, form.solstice_month]) }}
+
+		{%- for mi in range(num_moons) -%}
+		<div class="form-row">
+			{{ form['moon_' ~ mi ~ '_name'](class_='form-control col-4')|safe }}
+			<div class="col-auto col-form-label">
+				has a cycle of
+			</div>
+			{{ form['moon_' ~ mi ~ '_cycle'](class_='form-control col-1')|safe }}
+			<div class="col-auto col-form-label">
+				days.
+			</div>
+		</div>
+		{{ multiErrorCol([form['moon_' ~ mi ~ '_name'], form['moon_' ~ mi ~ '_cycle']]) }}
+
+		<div class="form-row mb-3">
+			<div class="col-auto col-form-label">
+				It has a full moon on the
+			</div>
+			{{ form['moon_' ~ mi ~ '_day'](class_='form-control col-1')|safe }}
+			<div class="col-auto col-form-label">
+				of
+			</div>
+			{{ form['moon_' ~ mi ~ '_month'](class_='form-control col-3')|safe }}
+			<div class="col-auto col-form-label">
+				in the start year.
+			</div>
+		</div>
+		{{ multiErrorCol([form['moon_' ~ mi ~ '_day'], form['moon_' ~ mi ~ '_month']]) }}
+		{%- endfor -%}
+
+		<h3 class="mt-3">Leap year</h3>
+ 		<div class="form-check mb-3">
+			{{ form.use_leap_year(class_='form-check-input', data_toggle='collapse', data_target='#leapYearCollapse')|safe }}
+			{{ form.use_leap_year.label(class_='form-check-label') }}
+		</div>
+		<div id="leapYearCollapse" class="collapse mb-3{%- if form.use_leap_year.data %} show{%- endif -%}">
+			<div class="form-row mb-3">
+				<div class="col-auto col-form-label">
+					Add
+				</div>
+				{{ form.leap_by(class_='form-control col-1')|safe }}
+				<div class="col-auto col-form-label">
+					day(s) to
+				</div>
+				{{ form.leap_month(class_='custom-select col-3')|safe }}
+				<div class="col-auto col-form-label">
+					every
+				</div>
+				{{ form.leap_every(class_='form-control col-1')|safe }}
+				<div class="col-auto col-form-label">
+					years.
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="input-group col-4">
+					{{ form.leap_basis_year(class_='form-control')|safe }}
+					<div class="input-group-append">
+						<span class="input-group-text">{{ era }}</span>
+					</div>
+				</div>
+				<div class="col-auto col-form-label">
+					is a leap year.
+				</div>
+			</div>
+			{{ multiErrorCol([form.leap_by, form.leap_month, form.leap_every, form.leap_basis_year]) }}
+		</div>
+
+		<h3 class="mt-3">World map</h3>
+ 		<div class="form-check mb-3">
+			{{ form.use_map(class_='form-check-input', data_toggle='collapse', data_target='#mapCollapse')|safe }}
+			{{ form.use_map.label(class_='form-check-label') }}
+		</div>
+		<div id="mapCollapse" class="collapse mb-3{%- if form.use_map.data %} show{%- endif -%}">
+			<div class="form-group">
+				<div class="custom-file">
+					{{ form.map_file(class_='custom-file-input') }}
+					{{ form.map_file.label(class_='custom-file-label') }}
+				</div>
+				{%- if form.map_file.errors -%}
+				{%- for error in form.map_file.errors -%}
+				  <small class="form-text text-danger" role="alert">{{ error }}</small>
+				{%- endfor -%}
+				{%- endif -%}
+				</div>
+			<div class="form-row mb-3">
+				<div class="col-auto col-form-label">
+					Map is
+				</div>
+				{{ form.map_width(class_='form-control col-2 mr-2')|safe }}
+				{{ form.map_units(class_='custom-select col-2')|safe }}
+				<div class="col-auto col-form-label">
+					wide.
+				</div>
+			</div>
+			{{ multiErrorCol([form.map_width, form.map_units]) }}
+		</div>
+
+		<input class="btn btn-secondary" type="submit" value="Next"/>
+	</form>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript">
+	$('.custom-file-input').on('change', function() {
+		var thisInput = $(this);
+		var fileName = thisInput.val().split("\\").pop();
+		if (fileName.length < 1) fileName = "Map file (max 5 MB)";
+		thisInput.next('.custom-file-label').text(fileName);
+	});
+</script>
+{% endblock %}

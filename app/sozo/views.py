@@ -85,7 +85,7 @@ def show_canvas(stringid):
                                    stringid=stringid)
 
     if stringid not in active_canvases:
-        active_canvases[stringid] = CanvasHandler(canvas)
+        active_canvases[stringid] = CanvasHandler(canvas.id)
 
     return render_template('sozo_canvas.html',
                            canvas_name=canvas.name,
@@ -94,9 +94,9 @@ def show_canvas(stringid):
 
 @Sozo.route('/delete', methods=['POST'])
 @login_required
-def delete_canvas(stringid=None):
+def delete(stringid=None):
     next_url = request.args.get('next', url_for('.main'))
-    stringid = request.form.get('canvasID', None)
+    stringid = request.form.get('SozoID', None)
 
     if stringid:
         canvas = CanvasData.query.filter_by(stringid=stringid).first()
@@ -110,17 +110,18 @@ def delete_canvas(stringid=None):
 
 @Sozo.route('/rename', methods=['POST'])
 @login_required
-def rename_canvas(stringid=None):
+def rename(stringid=None):
     next_url = request.args.get('next', url_for('.main'))
-    stringid = request.form.get('canvasID', None)
+    stringid = request.form.get('SozoID', None)
 
     if stringid:
         canvas = CanvasData.query.filter_by(stringid=stringid).first()
 
         if canvas and canvas.user_id == current_user.id:
             new_name = request.form.get('newSozoName', 'Canvas')
-            canvas.name = new_name
-            db.session.add(canvas)
-            db.session.commit()
+            if len(new_name.strip()) > 0:
+                canvas.name = new_name
+                db.session.add(canvas)
+                db.session.commit()
 
     return redirect(next_url)

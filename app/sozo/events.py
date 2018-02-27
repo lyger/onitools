@@ -3,9 +3,10 @@
 from datetime import datetime  # May delete later
 from flask import request, session
 from flask_socketio import emit, join_room
-from sqlalchemy.orm.attributes import flag_modified
+from sqlalchemy.orm import load_only
 
 from .. import socketio, db
+from .db import CanvasData
 
 UNDO_MODE = 8
 NULL_MODE = -1
@@ -14,18 +15,20 @@ sid_connections = {}
 
 
 def log(*msg):
-    #print(datetime.today().strftime("%y-%m-%d %H:%M:%S"), *msg)
+    # print(datetime.today().strftime("%y-%m-%d %H:%M:%S"), *msg)
     pass
 
 
 class CanvasHandler:
 
-    def __init__(self, canvas):
+    def __init__(self, canvas_id):
+        canvas = CanvasData.query.options(load_only('data')).get(canvas_id)
         self.data = canvas.data or []
-        self.canvas = canvas
+        self.cid = canvas_id
         self.clients = set()
         self.clientdata = {}
         self.alive = True
+        db.session.close()
 
     def addClient(self, client):
         self.clients.add(client)
@@ -53,10 +56,11 @@ class CanvasHandler:
         return obj
 
     def commit(self):
-        self.canvas.data = self.data
-        flag_modified(self.canvas, 'data')
-        db.session.add(self.canvas)
+        canvas = CanvasData.query.get(self.cid)
+        canvas.data = self.data
+        db.session.add(canvas)
         db.session.commit()
+        db.session.close()
 
 
 @socketio.on('connect', namespace='/sozo')
@@ -82,7 +86,11 @@ def client_leave():
 
 @socketio.on('init canvas', namespace='/sozo')
 def initialize_canvas(data):
-    cid = data['cid']
+    cid = data.get('cid', None)
+
+    if not cid:
+        return
+
     join_room(cid)
 
     # Due to browser behavior (back button, etc.) the page may be loaded

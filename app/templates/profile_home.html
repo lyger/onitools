@@ -12,31 +12,47 @@
 			</a>
 
 			<div class="float-right">
-				<button class="btn btn-link" data-toggle="modal" data-target="#renameSozoModal" data-canvasid="{{canvas.stringid}}">Rename</button>
-				<button class="btn btn-link" data-toggle="modal" data-target="#deleteSozoModal" data-canvasid="{{canvas.stringid}}">Delete</button>
+				<button class="btn btn-link" data-toggle="modal" data-target="#renameSozoModal" data-id="{{ canvas.stringid }}">Rename</button>
+				<button class="btn btn-link" data-toggle="modal" data-target="#deleteSozoModal" data-id="{{ canvas.stringid }}">Delete</button>
 			</div>
 		</div>
 	{% endfor %}
 </div>
+
+<h2 id="RekiHeader" class="mt-3">Reki calendars <a href="{{ url_for('Reki.create_new1') }}" class="btn btn-secondary btn-sm">New</a></h2>
+<div class="card card-body" action="{{ url_for('Reki.main') }}" method="POST">
+  {% for reki in current_user.reki_calendars %}
+    <div class="clearfix profile-list-item">
+      <a class="float-left h4 text-primary" href="{{ url_for('Reki.run_app', rid=reki.id) }}">
+        {{ reki.name }}
+      </a>
+
+      <div class="float-right">
+        <button class="btn btn-link" type="button" data-toggle="modal" data-target="#renameRekiModal" data-id="{{ reki.id }}">Rename</button>
+        <button class="btn btn-link" type="button" data-toggle="modal" data-target="#deleteRekiModal" data-id="{{ reki.id }}">Delete</button>
+      </div>
+    </div>
+  {% endfor %}
+</div>
 {% endblock %}
 
-{% block footer %}
-<div class="modal fade" id="renameSozoModal" tabindex="-1" role="dialog" aria-labelledby="renameSozoModalLabel" aria-hidden="true">
+{% macro renameModal(app, title) %}
+<div class="modal fade" id="rename{{ app }}Modal" tabindex="-1" role="dialog" aria-labelledby="rename{{ app }}ModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="renameSozoModalLabel">Rename canvas</h5>
+        <h5 class="modal-title" id="rename{{ app }}ModalLabel">{{ title }}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <form method="POST">
-		<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-		<input type="hidden" name="canvasID" id="renameCanvasID"/>
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        <input type="hidden" name="{{ app }}ID" id="rename{{ app }}ID"/>
         <div class="modal-body">
           <div class="form-group">
-            <label for="newSozoName" class="col-form-label">New name:</label>
-            <input type="text" class="form-control" id="newSozoName" name="newSozoName">
+            <label for="new{{ app }}Name" class="col-form-label">New name:</label>
+            <input type="text" class="form-control" id="new{{ app }}Name" name="new{{ app }}Name">
           </div>
         </div>
         <div class="modal-footer">
@@ -47,19 +63,21 @@
     </div>
   </div>
 </div>
+{% endmacro %}
 
-<div class="modal fade" id="deleteSozoModal" tabindex="-1" role="dialog" aria-labelledby="deleteSozoModalLabel" aria-hidden="true">
+{% macro deleteModal(app, title) %}
+<div class="modal fade" id="delete{{ app }}Modal" tabindex="-1" role="dialog" aria-labelledby="delete{{ app }}ModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="deleteSozoModalLabel">Delete canvas</h5>
+        <h5 class="modal-title" id="delete{{ app }}ModalLabel">{{ title }}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <form method="POST">
-		<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-		<input type="hidden" name="canvasID" id="deleteCanvasID"/>
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        <input type="hidden" name="{{ app }}ID" id="delete{{ app }}ID"/>
         <div class="modal-body">
           <p><span class="font-weight-bold">Are you sure?</span> This action cannot be undone.</p>
         </div>
@@ -67,27 +85,39 @@
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
           <input type="submit" class="btn btn-secondary" value="Delete">
         </div>
+      </form>
     </div>
   </div>
 </div>
+{% endmacro %}
+
+{% block footer %}
+{{ renameModal('Sozo', 'Rename canvas') }}
+{{ deleteModal('Sozo', 'Delete canvas') }}
+{{ renameModal('Reki', 'Rename Reki') }}
+{{ deleteModal('Reki', 'Delete Reki') }}
 {% endblock %}
 
 {% block scripts %}
 <script type="text/javascript">
-	$('#renameSozoModal').on('show.bs.modal', function(event) {
+{% for app in ['Sozo', 'Reki'] %}
+	$('#rename{{ app }}Modal').on('show.bs.modal', function(event) {
 		var button = $(event.relatedTarget);
-		var canvasID = button.data('canvasid');
+		var id = button.data('id');
+    console.log(id);
 		var form = $(this).find('form');
-		form.attr('action', "{{ url_for('Sozo.rename_canvas', next=url_for('Home.profile_home') + '#SozoHeader') }}");
-		form.find('#renameCanvasID').val(canvasID);
+		form.attr('action', "{{ url_for(app ~ '.rename', next=url_for('Home.profile_home') + '#' ~ app ~ 'Header') }}");
+		form.find('#rename{{ app }}ID').val(id);
 	});
 
-	$('#deleteSozoModal').on('show.bs.modal', function(event) {
+	$('#delete{{ app }}Modal').on('show.bs.modal', function(event) {
 		var button = $(event.relatedTarget);
-		var canvasID = button.data('canvasid');
+		var id = button.data('id');
+    console.log(id);
 		var form = $(this).find('form');
-		form.attr('action', "{{ url_for('Sozo.delete_canvas', next=url_for('Home.profile_home') + '#SozoHeader') }}");
-		form.find('#deleteCanvasID').val(canvasID);
+		form.attr('action', "{{ url_for(app ~ '.delete', next=url_for('Home.profile_home') + '#' ~ app ~ 'Header') }}");
+		form.find('#delete{{ app }}ID').val(id);
 	});
+{% endfor %}
 </script>
 {% endblock %}

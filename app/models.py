@@ -28,5 +28,6 @@ class User(db.Model, UserMixin):
     preferences = db.Column(db.PickleType)
 
     sozo_canvases = db.relationship('CanvasData', backref='user', lazy=True)
+    reki_calendars = db.relationship('RekiData', backref='user', lazy=True)
 
 user_datastore = SQLAlchemyUserDatastore(db, User, Role)
