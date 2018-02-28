@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 
+from flask_uploads import UploadSet, IMAGES
+
 from .. import db
+
+
+rekimaps = UploadSet('rekimaps', IMAGES)
 
 
 class RekiData(db.Model):
@@ -11,7 +16,7 @@ class RekiData(db.Model):
     options = db.Column(db.PickleType, nullable=False)
     world_data = db.Column(db.PickleType, nullable=False)
     weather_data = db.Column(db.PickleType, nullable=True)
-    map_image = db.Column(db.LargeBinary, nullable=True)
+    map_url = db.Column(db.String(120), nullable=True)
 
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
@@ -95,10 +100,11 @@ def model_from_form(form_data, user_id):
         settings['map'] = {'world_width': f['map_width']
                            if f['map_units'] == 'mi'
                            else km2mi(f['map_width'])}
-        map_image = f['map_file'].read()
+        map_filename = rekimaps.save(f['map_file'])
+        map_url = rekimaps.url(map_filename)
     else:
         settings['map'] = None
-        map_image = None
+        map_url = None
 
     # Initialize empty world data dict.
     world_data = {'events': [], 'history': [], 'inProgress': [],
@@ -110,5 +116,5 @@ def model_from_form(form_data, user_id):
     options = {}
 
     return RekiData(name=f['name'], time=0, settings=settings, options=options,
-                    world_data=world_data, map_image=map_image,
+                    world_data=world_data, map_url=map_url,
                     user_id=user_id)
