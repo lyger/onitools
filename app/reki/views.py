@@ -7,9 +7,10 @@ from wtforms import IntegerField, SelectField, StringField
 from wtforms.validators import InputRequired, NumberRange, Length, \
     ValidationError
 from itertools import zip_longest
+from os import remove as remove_file
 
 from . import Reki
-from .db import db, model_from_form, RekiData
+from .db import db, model_from_form, RekiData, rekimaps
 from .forms import CreateRekiForm1, CreateRekiForm2, CreateRekiForm3
 from .. import csrf
 
@@ -240,7 +241,7 @@ def get_reki():
            'world_data': reki.world_data}
 
     if reki.settings['map'] is not None:
-        ret['map_imgurl'] = reki.map_url
+        ret['map_imgurl'] = rekimaps.url(reki.map_file)
 
     return jsonify(ret)
 
@@ -288,13 +289,14 @@ def delete():
     reki_id = request.form.get('RekiID', None)
 
     if reki_id:
-        reki = RekiData.query.options(defer('map_image')).get(reki_id)
+        reki = RekiData.query.get(reki_id)
 
         if (current_user.id in active_rekis) and \
                 (active_rekis[current_user.id] == reki.id):
             del active_rekis[current_user.id]
 
         if reki and reki.user_id == current_user.id:
+            remove_file(rekimaps.path(reki.map_file))
             db.session.delete(reki)
             db.session.commit()
 
