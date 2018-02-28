@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from flask_uploads import UploadSet, IMAGES
+from os.path import splitext
 
 from .. import db
 
@@ -16,7 +17,7 @@ class RekiData(db.Model):
     options = db.Column(db.PickleType, nullable=False)
     world_data = db.Column(db.PickleType, nullable=False)
     weather_data = db.Column(db.PickleType, nullable=True)
-    map_url = db.Column(db.String(120), nullable=True)
+    map_file = db.Column(db.String(120), nullable=True)
 
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
@@ -27,6 +28,15 @@ def km2mi(km):
 
 def mi2km(mi):
     return mi * 1.609344
+
+
+def shorten_filename(fname, maxlen=100):
+    root, ext = splitext(fname)
+
+    if len(ext) > maxlen:
+        ext = ext[:maxlen]
+
+    return root[:maxlen - len(ext)] + ext
 
 
 def model_from_form(form_data, user_id):
@@ -100,11 +110,12 @@ def model_from_form(form_data, user_id):
         settings['map'] = {'world_width': f['map_width']
                            if f['map_units'] == 'mi'
                            else km2mi(f['map_width'])}
-        map_filename = rekimaps.save(f['map_file'])
-        map_url = rekimaps.url(map_filename)
+        # Truncate filenames to at most 80 characters.
+        f['map_file'].filename = shorten_filename(f['map_file'].filename, 80)
+        map_file = rekimaps.save(f['map_file'])
     else:
         settings['map'] = None
-        map_url = None
+        map_file = None
 
     # Initialize empty world data dict.
     world_data = {'events': [], 'history': [], 'inProgress': [],
@@ -116,5 +127,5 @@ def model_from_form(form_data, user_id):
     options = {}
 
     return RekiData(name=f['name'], time=0, settings=settings, options=options,
-                    world_data=world_data, map_url=map_url,
+                    world_data=world_data, map_file=map_file,
                     user_id=user_id)
