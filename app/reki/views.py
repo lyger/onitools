@@ -4,8 +4,8 @@ from flask import jsonify, redirect, render_template, request, session, url_for
 from flask_security import current_user, login_required
 from sqlalchemy.orm import load_only, defer
 from wtforms import IntegerField, SelectField, StringField
-from wtforms.validators import InputRequired, NumberRange, Length, ValidationError
-from base64 import b64encode
+from wtforms.validators import InputRequired, NumberRange, Length, \
+    ValidationError
 from itertools import zip_longest
 
 from . import Reki
@@ -240,8 +240,7 @@ def get_reki():
            'world_data': reki.world_data}
 
     if reki.settings['map'] is not None:
-        img_data = b64encode(reki.map_image).decode('utf-8')
-        ret['map_imgdata'] = img_data
+        ret['map_imgurl'] = reki.map_url
 
     return jsonify(ret)
 

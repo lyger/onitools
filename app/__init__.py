@@ -9,7 +9,7 @@ from flask_security import Security
 from flask_sessionstore import Session
 from flask_socketio import SocketIO
 from flask_sqlalchemy import SQLAlchemy
-from flask_uploads import patch_request_class
+from flask_uploads import configure_uploads, patch_request_class
 from flask_wtf.csrf import CSRFProtect
 
 from redis import Redis
@@ -56,6 +56,8 @@ def create_app():
     from .sozo import Sozo
     from .nado import Nado
     from .reki import Reki
+    from .reki.db import rekimaps
+
     app.register_blueprint(Home)
     app.register_blueprint(Sozo, url_prefix='/sozo')
     app.register_blueprint(Mobu, url_prefix='/mobu')
@@ -64,6 +66,9 @@ def create_app():
 
     # Set a maximum request size of 20 MB.
     patch_request_class(app, size=20 * 1024 * 1024)
+
+    # Configure uploads.
+    configure_uploads(app, (rekimaps))
 
     @app.before_first_request
     def init_db():
