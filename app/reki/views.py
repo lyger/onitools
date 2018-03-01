@@ -296,7 +296,8 @@ def delete():
             del active_rekis[current_user.id]
 
         if reki and reki.user_id == current_user.id:
-            remove_file(rekimaps.path(reki.map_file))
+            if reki.map_file is not None:
+                remove_file(rekimaps.path(reki.map_file))
             db.session.delete(reki)
             db.session.commit()
 

@@ -10,6 +10,7 @@
 {% endwith %}
 {% endmacro %}
 
+
 {% macro mobile_warning(appname) %}
 <div class="alert alert-danger alert-dismissible fade show d-block d-lg-none" role="alert">
 	<strong>{{ appname }}</strong> is not designed to work on smartphone or tablet. Please view this page on desktop.
@@ -18,6 +19,7 @@
 	</button>
 </div>
 {% endmacro %}
+
 
 {% macro standard_form_group(field, wrapper_class='', label_class='') %}
 <div class="form-group {{wrapper_class}}">
@@ -30,6 +32,7 @@
     {% endif %}
 </div>
 {% endmacro %}
+
 
 {% macro horizontal_form_group(field, label_class='col', input_class='col', control_class='form-control', addon=None, info=None) %}
 <div class="form-group row">
@@ -54,5 +57,62 @@
     {%- endfor -%}
     {%- endif %}
 	</div>
+</div>
+{% endmacro %}
+
+
+{% macro renameModal(app, title) %}
+<div class="modal fade" id="rename{{ app }}Modal" tabindex="-1" role="dialog" aria-labelledby="rename{{ app }}ModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="rename{{ app }}ModalLabel">{{ title }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        <input type="hidden" name="{{ app }}ID" id="rename{{ app }}ID"/>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="new{{ app }}Name" class="col-form-label">New name:</label>
+            <input type="text" class="form-control" id="new{{ app }}Name" name="new{{ app }}Name">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <input type="submit" class="btn btn-secondary" value="Rename">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endmacro %}
+
+
+{% macro deleteModal(app, title) %}
+<div class="modal fade" id="delete{{ app }}Modal" tabindex="-1" role="dialog" aria-labelledby="delete{{ app }}ModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="delete{{ app }}ModalLabel">{{ title }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        <input type="hidden" name="{{ app }}ID" id="delete{{ app }}ID"/>
+        <div class="modal-body">
+          <p><span class="font-weight-bold">Are you sure?</span> This action cannot be undone.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <input type="submit" class="btn btn-secondary" value="Delete">
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
 {% endmacro %}
