@@ -1,6 +1,6 @@
 {% extends 'onitools_layout.html' %}
 
-{% from "_macros.html" import flashed %}
+{% from "_macros.html" import flashed, deleteModal, renameModal %}
 
 {% block title %}Reki timeline manager{% endblock %}
 
@@ -31,9 +31,13 @@
 				</div>
 				<div class="list-group list-group-flush" action="{{ url_for('.main') }}" method="POST">
 				{%- for reki in current_user.reki_calendars %}
-					<a class="list-group-item list-group-item-action" href="{{ url_for('Reki.run_app', rid=reki.id) }}">
-						{{ reki.name }}
-					</a>
+					<div class="list-group-item list-group-item-action">
+						<a class="float-left h4 text-primary my-1" href="{{ url_for('Reki.run_app', rid=reki.id) }}">{{ reki.name }}</a>
+						<div class="float-right">
+							<button class="btn btn-link" type="button" data-toggle="modal" data-target="#renameRekiModal" data-id="{{ reki.id }}">Rename</button>
+					        <button class="btn btn-link" type="button" data-toggle="modal" data-target="#deleteRekiModal" data-id="{{ reki.id }}">Delete</button>
+				    	</div>
+					</div>
 				{% endfor -%}
 				</div>
 			</div>
@@ -43,4 +47,31 @@
 	<div class="alert alert-info">Please <a class="alert-link" href="{{ url_for_security('login') }}">login</a> or <a class="alert-link" href="{{ url_for_security('register') }}">register</a> to use this tool.</div>
 	{% endif %}
 </div>
+{% endblock %}
+
+
+{% block footer %}
+{{ renameModal('Reki', 'Rename Reki') }}
+{{ deleteModal('Reki', 'Delete Reki') }}
+{% endblock %}
+
+
+{% block scripts %}
+<script type="text/javascript">
+	$('#renameRekiModal').on('show.bs.modal', function(event) {
+		var button = $(event.relatedTarget);
+		var id = button.data('id');
+		var form = $(this).find('form');
+		form.attr('action', "{{ url_for('Reki.rename', next=url_for('Reki.main')) }}");
+		form.find('#renameRekiID').val(id);
+	});
+
+	$('#deleteRekiModal').on('show.bs.modal', function(event) {
+		var button = $(event.relatedTarget);
+		var id = button.data('id');
+		var form = $(this).find('form');
+		form.attr('action', "{{ url_for('Reki.delete', next=url_for('Reki.main')) }}");
+		form.find('#deleteRekiID').val(id);
+	});
+</script>
 {% endblock %}

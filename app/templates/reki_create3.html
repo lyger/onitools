@@ -23,7 +23,7 @@
 
 	<form action="{{ url_for('.create_new3') }}" method="POST" enctype="multipart/form-data">
 		{{ form.csrf_token }}
-		<h3 class="mt-3">Starting date</h3>
+		<h3 class="mt-3">Game starting date</h3>
 		<div class="form-row">
 			{{ form.start_weekday(class_='custom-select col-2')|safe }}
 			<div class="col-auto col-form-label">
@@ -41,6 +41,7 @@
 				</div>
 			</div>
 		</div>
+		<small class="form-text">This is the start date of your <strong>campaign</strong>, not the start date of the calendar.</small>
 		{{ multiErrorCol([form.start_weekday, form.start_day, form.start_month, form.start_year]) }}
 
 		<h3 class="mt-3">Natural events</h3>
