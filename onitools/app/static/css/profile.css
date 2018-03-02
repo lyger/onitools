@@ -1,0 +1,16 @@
+.profile-sidebar {
+	border-right: 1px solid #ced4da;
+	padding: 0.5rem;
+	text-align: right;
+}
+
+.profile-sidebar-item {
+	padding-top: 0.5rem;
+	padding-right: 1rem;
+}
+
+.profile-list-item {
+	border-bottom: 1px solid #ced4da;
+	padding: 0.5rem 1rem;
+	padding-top: 1rem;
+}

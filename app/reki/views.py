@@ -8,6 +8,7 @@ from wtforms.validators import InputRequired, NumberRange, Length, \
     ValidationError
 from itertools import zip_longest
 from os import remove as remove_file
+from os.path import exists as file_exists
 
 from . import Reki
 from .db import db, model_from_form, RekiData, rekimaps
@@ -23,6 +24,22 @@ DEFAULT_WEEKDAYS = ['Sunday', 'Monday', 'Tuesday',
 
 # Global storage.
 active_rekis = {}
+
+# While developing in react, the dev server must allow cross-origin and
+# non-logged-in connections.
+LOCAL_DEBUG = True
+
+
+class decorate_if:
+
+    def __init__(self, condition, decorator):
+        self.condition = condition
+        self.decorator = decorator
+
+    def __call__(self, f):
+        if self.condition:
+            return self.decorator(f)
+        return f
 
 
 @Reki.context_processor
@@ -219,12 +236,14 @@ def run_app():
 
 
 @Reki.route('/_get_reki')
-@login_required  # DISABLE FOR TESTING as React server is cross-origin.
+@decorate_if(not LOCAL_DEBUG, login_required)
 def get_reki():
     # The only way this could have ended up here is if the current user
     # owns the Reki and it exists. No need to validate further.
-    reki_id = active_rekis.get(current_user.id, None)
-    # reki_id = active_rekis[1]
+    if LOCAL_DEBUG:
+        reki_id = active_rekis[1]
+    else:
+        reki_id = active_rekis.get(current_user.id, None)
 
     if not reki_id:
         # Error code 1: Reki not chosen.
@@ -247,13 +266,16 @@ def get_reki():
 
 
 @Reki.route('/_save_reki', methods=['POST'])
-@login_required  # DISABLE FOR TESTING as React server is cross-origin.
-# @csrf.exempt
+@decorate_if(not LOCAL_DEBUG, login_required)
+@decorate_if(LOCAL_DEBUG, csrf.exempt)
 def save_reki():
     data = request.get_json(silent=True)
 
-    reki_id = active_rekis.get(current_user.id, None)  # DISABLED FOR DEBUG
-    # reki_id = active_rekis[1]
+    if LOCAL_DEBUG:
+        reki_id = active_rekis[1]
+    else:
+        reki_id = active_rekis.get(current_user.id, None)
+
     if data.get('rid', -1) != reki_id:
         # Error code 2: trying to save to wrong reki.
         return jsonify(code=2)
@@ -275,8 +297,9 @@ def save_reki():
     db.session.commit()
 
     if data.get('quit', False):
-        # pass
-        del active_rekis[current_user.id]  # DISABLED FOR DEBUG
+        if LOCAL_DEBUG:
+            return jsonify(code=0)
+        del active_rekis[current_user.id]
 
     # Code 0, everything went OK.
     return jsonify(code=0)
@@ -296,8 +319,13 @@ def delete():
             del active_rekis[current_user.id]
 
         if reki and reki.user_id == current_user.id:
+
             if reki.map_file is not None:
-                remove_file(rekimaps.path(reki.map_file))
+                map_path = rekimaps.path(reki.map_file)
+
+                if file_exists(map_path):
+                    remove_file(map_path)
+
             db.session.delete(reki)
             db.session.commit()
 
