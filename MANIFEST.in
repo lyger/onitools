@@ -1,0 +1,2 @@
+graft onitools/app/templates
+graft onitools/app/static
