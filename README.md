@@ -58,3 +58,5 @@ Then you can start the local Flask server:
 ```bash
 python3 onitools/run.py
 ```
+
+Be aware that **starting the server will be slow** as long as the Nado app is mounted. Nado is a machine-learning-based name generator which pre-generates a few thousand names on startup. This generally takes upward of ten minutes. You can disable it by editing `onitools/app/__init__.py` (make sure to comment out the import and remove it from the global list of tabs).
