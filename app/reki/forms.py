@@ -91,7 +91,7 @@ class CreateRekiForm1(FlaskForm):
                      validators=[InputRequired(), NumberRange(min=1)])
     num_moons = \
         IntegerField('Number of moons in world', default=1,
-                     validators=[InputRequired(), NumberRange(min=0, max=5)])
+                     validators=[InputRequired(), NumberRange(min=1, max=5)])
 
 
 class CreateRekiForm2(FlaskForm):

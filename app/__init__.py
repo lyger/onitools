@@ -15,15 +15,8 @@ from flask_wtf.csrf import CSRFProtect
 from redis import Redis
 from werkzeug.exceptions import default_exceptions
 
-# Nado is very memory and CPU intensive on startup and slows testing of
-# other apps.
-MOUNT_NADO = False
-
-# Necessary when developing separately in React.
-CROSS_ORIGIN = True
-
-if CROSS_ORIGIN:
-    from flask_cors import CORS
+# DEBUG ONLY
+# from flask_cors import CORS
 
 
 db = SQLAlchemy()
@@ -54,23 +47,21 @@ def create_app():
     sess.init_app(app)
     socketio.init_app(app)
 
-    if CROSS_ORIGIN:
-        CORS(app)
+    # DEBUG ONLY
+    # CORS(app)
 
     # Blueprints.
     from .home import Home
     from .mobu import Mobu
-    if MOUNT_NADO:
-        from .nado import Nado
     from .sozo import Sozo
+    from .nado import Nado
     from .reki import Reki
     from .reki.db import rekimaps
 
     app.register_blueprint(Home)
     app.register_blueprint(Sozo, url_prefix='/sozo')
     app.register_blueprint(Mobu, url_prefix='/mobu')
-    if MOUNT_NADO:
-        app.register_blueprint(Nado, url_prefix='/nado')
+    app.register_blueprint(Nado, url_prefix='/nado')
     app.register_blueprint(Reki, url_prefix='/reki')
 
     # Set a maximum request size of 20 MB.
@@ -93,13 +84,9 @@ def create_app():
     # Define for all templates (navbar, etc.).
     @app.context_processor
     def inject_globals():
-        if not MOUNT_NADO:
-            return {
-                'pages': ['Sozo', 'Mobu', 'Reki']
-            }
-
         return {
             'pages': ['Sozo', 'Mobu', 'Nado', 'Reki']
+            # 'pages': ['Sozo', 'Mobu', 'Reki']
         }
 
     # Handle errors.
