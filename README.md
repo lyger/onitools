@@ -9,7 +9,7 @@ Requires, depending on configuration:
 * [Redis](https://redis.io/) (for session management)
 * MySQL (or another database backend)
 
-Since those are the current defaults I'm using, the respective Python APIs will be installed with the other dependencies. You can change these settings by editing `onitools/default_settings.py`.
+Since those are the current defaults I'm using, the respective Python APIs will be installed with the other dependencies. You can change these settings by editing `onitools/app/default_settings.py`.
 
 To install, clone this repo, and in the root directory run:
 
