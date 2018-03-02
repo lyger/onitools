@@ -90,6 +90,8 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+bin/
+include/
 
 # Spyder project settings
 .spyderproject
@@ -108,6 +110,9 @@ venv.bak/
 node_modules/
 .babelrc
 package-lock.json
+
+# Venv pip self-check
+pip-selfcheck.json
 
 # Private configuration
 settings.cfg
