@@ -29,7 +29,7 @@
 				<div class="card-header">
 					<h4>Created Rekis</h4>
 				</div>
-				<div class="list-group list-group-flush" action="{{ url_for('.main') }}" method="POST">
+				<div class="list-group list-group-flush">
 				{%- for reki in current_user.reki_calendars %}
 					<div class="list-group-item list-group-item-action">
 						<a class="float-left h4 text-primary my-1" href="{{ url_for('Reki.run_app', rid=reki.id) }}">{{ reki.name }}</a>
@@ -46,6 +46,17 @@
 	{%- else -%}
 	<div class="alert alert-info">Please <a class="alert-link" href="{{ url_for_security('login') }}">login</a> or <a class="alert-link" href="{{ url_for_security('register') }}">register</a> to use this tool.</div>
 	{% endif %}
+
+	<hr/>
+	
+	<h3>Update 2018-3-4</h3>
+	<ul>
+		<li>Interface tweaks.</li>
+		<li>Allow scrolling up and down timeline.</li>
+		<li>Fixed 24-hour clock not displaying in event descriptions.</li>
+		<li>Added manual save button.</li>
+	</ul>
+
 </div>
 {% endblock %}
 

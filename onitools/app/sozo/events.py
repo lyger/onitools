@@ -14,9 +14,20 @@ active_canvases = {}
 sid_connections = {}
 
 
-def log(*msg):
-    # print(datetime.today().strftime("%y-%m-%d %H:%M:%S"), *msg)
-    pass
+def validate_cid(f):
+    def wrapper(data, *args, **kwargs):
+        cid = data.get('cid', None)
+
+        if not cid:
+            return
+
+        if cid not in active_canvases:
+            emit('reload')
+            return
+
+        return f(cid, data, *args, **kwargs)
+
+    return wrapper
 
 
 class CanvasHandler:
@@ -65,13 +76,11 @@ class CanvasHandler:
 
 @socketio.on('connect', namespace='/sozo')
 def acknowledge_connect():
-    log("CONNECT:", request.sid)
     sid_connections[request.sid] = [1, set()]
 
 
 @socketio.on('disconnect', namespace='/sozo')
 def client_leave():
-    log("LEAVE:", request.sid)
     sid_connections[request.sid][0] -= 1
     if sid_connections[request.sid][0] < 1:
         sid_connections[request.sid][0] = 0
@@ -80,24 +89,13 @@ def client_leave():
             if handler.removeClient(request.sid) == 0:
                 handler.commit()
                 active_canvases.pop(cid, None)
-                log('Removed', cid, 'from memory.')
         sid_connections.pop(request.sid, None)
 
 
 @socketio.on('init canvas', namespace='/sozo')
-def initialize_canvas(data):
-    cid = data.get('cid', None)
-
-    if not cid:
-        return
-
+@validate_cid
+def initialize_canvas(cid, data):
     join_room(cid)
-
-    # Due to browser behavior (back button, etc.) the page may be loaded
-    # despite the canvas not being active on server.
-    if cid not in active_canvases:
-        emit('reload')
-        return
 
     sid_connections[request.sid][1].add(cid)
 
@@ -115,8 +113,8 @@ def initialize_canvas(data):
 
 
 @socketio.on('draw action', namespace='/sozo')
-def draw_to_canvas(data):
-    cid = data['cid']
+@validate_cid
+def draw_to_canvas(cid, data):
     obj = data['obj']
     active_canvases[cid].push(request.sid, obj)
     emit('draw update', obj, room=cid)
@@ -124,24 +122,24 @@ def draw_to_canvas(data):
 
 
 @socketio.on('undo', namespace='/sozo')
-def undo_from_client(data):
-    cid = data['cid']
+@validate_cid
+def undo_from_client(cid, data):
     to_undo = active_canvases[cid].undo(request.sid)
     emit('undo update', {'id': to_undo}, room=cid)
     emit('undo confirm', {'id': to_undo})
 
 
 @socketio.on('redo', namespace='/sozo')
-def redo_from_client(data):
-    cid = data['cid']
+@validate_cid
+def redo_from_client(cid, data):
     obj = active_canvases[cid].redo(request.sid, data['id'])
     emit('redo update', obj, room=cid)
     emit('redo confirm', {'id': obj['id']})
 
 
 @socketio.on('resend', namespace='/sozo')
-def resend_from(data):
-    cid = data['cid']
+@validate_cid
+def resend_from(cid, data):
     ctop = data['from']
     for obj in active_canvases[cid].data[ctop:]:
         emit('draw update', obj, room=cid)
