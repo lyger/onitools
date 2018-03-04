@@ -19,7 +19,7 @@ dependencies = [
 setup(
     name='onitools',
     packages=['onitools'],
-    version=0.1.1,
+    version='0.1.1',
     include_package_data=True,
     install_requires=dependencies
 )
