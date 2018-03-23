@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 from flask import jsonify, redirect, render_template, request, session, url_for
 from flask_security import current_user, login_required
 from sqlalchemy.orm import load_only, defer
@@ -134,6 +132,8 @@ def create_new3():
             month_field = form._fields.get(month_field_name, None)
             if month_field is None:
                 raise ValidationError('The form is broken.')
+            if field.data is None:
+                raise ValidationError('Please enter a day.')
             max_days = monthdays[int(month_field.data)]
             if field.data > max_days:
                 raise ValidationError(msg)
@@ -273,6 +273,7 @@ def save_reki():
 
     db.session.add(reki)
     db.session.commit()
+    db.session.close()
 
     if data.get('quit', False):
         # pass
