@@ -1,10 +1,9 @@
-#!/usr/bin/env python3
-
 from eventlet import monkey_patch
 monkey_patch()
 
 from flask import Flask, render_template, request, url_for
 from flask_mail import Mail
+from flask_restful import Api
 from flask_security import Security
 from flask_sessionstore import Session
 from flask_socketio import SocketIO
@@ -18,7 +17,7 @@ from werkzeug.exceptions import default_exceptions
 # DEBUG ONLY
 # from flask_cors import CORS
 
-
+api = Api()
 db = SQLAlchemy()
 csrf = CSRFProtect()
 mail = Mail()
@@ -40,6 +39,7 @@ def create_app():
     from .models import user_datastore
 
     # Initialize extensions.
+    api.init_app(app)
     db.init_app(app)
     csrf.init_app(app)
     mail.init_app(app)
@@ -88,6 +88,13 @@ def create_app():
             'pages': ['Sozo', 'Mobu', 'Nado', 'Reki']
             # 'pages': ['Sozo', 'Mobu', 'Reki']
         }
+
+    # Define route for certbot.
+    @app.route('/.well-known/acme-challenge/<token_value>')
+    def letsencrpyt(token_value):
+        with open('.well-known/acme-challenge/{}'.format(token_value)) as f:
+            answer = f.readline().strip()
+        return answer
 
     # Handle errors.
     def handle_http_error(e):
