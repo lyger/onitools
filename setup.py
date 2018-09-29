@@ -3,6 +3,7 @@ from setuptools import setup
 dependencies = [
     'flask',
     'flask-mail',
+    'flask-restful',
     'flask-sqlalchemy',
     'flask-sessionstore',
     'flask-security',
